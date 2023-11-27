@@ -9,6 +9,7 @@ from typing import Callable, cast, Optional, Type, Union
 from zoneinfo import ZoneInfo
 
 from dataclasses_jsonschema import JsonSchemaMixin, ValidationError
+from fastapi import FastAPI
 from rocketry import Rocketry
 import yaml
 
@@ -20,6 +21,8 @@ app = Rocketry(config={
     'timezone': ZoneInfo('Australia/Melbourne'),
     'cycle_sleep': 10,
 })
+
+fastapi = FastAPI()
 
 
 class PluginAdapter(logging.LoggerAdapter):

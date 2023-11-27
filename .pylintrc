@@ -3,3 +3,6 @@ disable=consider-iterating-dictionary, import-error, invalid-name, missing-docst
 
 [SIMILARITIES]
 min-similarity-lines=8
+
+[MASTER]
+extension-pkg-allow-list=pydantic
