@@ -12,6 +12,7 @@ services:
     environment:
       - DEBUG
       - MAILGUN_KEY
+      - MP3HOME=/music
       - TZ=Australia/Melbourne
     ports:
       - 3000:3000
@@ -23,6 +24,7 @@ services:
       - ./templates:/src/templates:ro
       - ./config:/src/config:ro
       - ./gcp_oauth_secret.json:/src/gcp_oauth_secret.json:ro
+      - /home/mafro/music:/music:ro
       - informa-data:/src/state
 
   test:
