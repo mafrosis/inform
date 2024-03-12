@@ -24,6 +24,7 @@ dependencies = [
 	"fastapi==0.109.1",
 	"feedparser==6.0.10",
 	"gcsa==2.3.0",
+	"gmsa @ https://github.com/mafrosis/gmsa/releases/download/0.1/gmsa-0.1-py3-none-any.whl",
 	"Jinja2==3.1.3",
 	"pandas>2.2,<2.3",
 	"pydantic==1.10.16",
@@ -31,6 +32,7 @@ dependencies = [
 	"requests==2.31.0",
 	"rich==13.3.3",
 	"rocketry==2.5.1",
+	"transto @ https://github.com/mafrosis/transto/releases/download/0.1/transto-0.1-py3-none-any.whl",
 	"uvicorn==0.24.0",
 ]
 
@@ -51,6 +53,10 @@ allow-direct-references = true
 
 [tool.hatch.envs.default]
 dependencies = ["ipdb"]
+pre-install-commands = [
+  "pip install -e ../transto",
+  "pip install -e ../gmsa"
+]
 
 [tool.hatch.envs.test]
 dependencies = [
