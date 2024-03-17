@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any
+from typing import Any, Union
 
 import requests
 from jinja2 import Environment, FileSystemLoader
@@ -13,7 +13,7 @@ def send(
     logger: logging.Logger | PluginAdapter,
     subject: str,
     template: str | None = None,
-    content: dict[str, Any] | None = None,
+    content: Union[str, dict[str, Any]] | None = None,
 ) -> bool:
     """
     Handle plugin loggers, and any exceptions raised during _send
@@ -30,7 +30,7 @@ def send(
     return True
 
 
-def _send(subject: str, template: str | None = None, content: dict[str, Any] | None = None):
+def _send(subject: str, template: str | None = None, content: Union[str, dict[str, Any]] | None = None):
     """
     Send an email via Mailgun
 
@@ -45,7 +45,7 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
     Params:
         subject:   Email subject line
         template:  The jinja2 template filename in templates/
-        content:   K/V data mapping to render template
+        content:   K/V data mapping to render template, OR raw string for body
     """
     try:
         api_key = os.environ['MAILGUN_KEY']
@@ -64,6 +64,8 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
         with open(f'templates/{template}', encoding='utf-8') as f:
             body = env.from_string(f.read()).render(**content)
 
+    elif isinstance(content, str):
+        body = content
     else:
         body = subject
 
