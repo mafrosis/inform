@@ -30,7 +30,6 @@ def run():
 
 
 def main(state: State):
-    logger.debug('Running, last run: %s', state.last_run or 'Never')
     state.last_run = now_aest()
 
     query_cellar_releases(state.products_seen)

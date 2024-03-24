@@ -30,7 +30,6 @@ def run():
 
 
 def main(state: State):
-    logger.debug('Running, last run: %s', state.last_run or 'Never')
     state.last_run = now_aest()
 
     state.last_release_seen = fetch_ha_releases(state.last_release_seen or None)

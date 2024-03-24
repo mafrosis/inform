@@ -45,7 +45,6 @@ def run():
 
 
 def main(state: State, config: Config):
-    logger.debug('Running, last run: %s', state.last_run or 'Never')
     state.last_run = now_aest()
 
     sess = requests.Session()

@@ -83,7 +83,6 @@ def main(state: State, config: Config):
     '''
     Check for new F1 torrents and add to rtorrent
     '''
-    logger.debug('Running, last run: %s', state.last_run or 'Never')
     state.last_run = now_aest()
 
     check_torrentgalaxy(config.current_season, state)

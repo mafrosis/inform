@@ -69,6 +69,8 @@ def load_run_persist(
             if issubclass(param, ConfigBase):
                 plugin_config_class = param
 
+        logger.info('Running')
+
         if plugin_config_class:
             # Reload config each time plugin runs
             config = load_config(plugin_config_class, plugin_name)
