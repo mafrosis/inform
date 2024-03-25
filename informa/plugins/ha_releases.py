@@ -32,7 +32,9 @@ def run():
 def main(state: State):
     state.last_run = now_aest()
 
-    state.last_release_seen = fetch_ha_releases(state.last_release_seen or None)
+    ver = fetch_ha_releases(state.last_release_seen or None)
+    if isinstance(ver, str):
+        state.last_release_seen = ver
 
 
 def fetch_ha_releases(last_release_seen: Optional[str]):
