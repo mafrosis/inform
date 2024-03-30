@@ -85,10 +85,9 @@ def main(state: State, config: Config):
     '''
     state.last_run = now_aest()
 
-    check_torrentgalaxy(config.current_season, state)
-
-    # Immediately add torrents (this command also runs every 15 mins on a task)
-    add_magnet_to_rtorrent(state.races)
+    if check_torrentgalaxy(config.current_season, state):
+        # if torrents found, try to add immediately
+        add_magnet_to_rtorrent(state.races)
 
 
 @app.task('every 5 minute')
@@ -172,7 +171,7 @@ def add_magnet_to_rtorrent(races: Dict[str, Download]):
             )
 
 
-def check_torrentgalaxy(current_season: int, state: State):
+def check_torrentgalaxy(current_season: int, state: State) -> bool:
     torrent_url = 'https://torrentgalaxy.to/rss?magnet&user=48067'
 
     try:
@@ -185,6 +184,7 @@ def check_torrentgalaxy(current_season: int, state: State):
     feed = feedparser.parse(resp.text)
 
     logger.info(f'Latest race: {state.latest_race}')
+    ret = False
 
     for entry in feed['entries']:
         title = entry['title']
@@ -211,12 +211,14 @@ def check_torrentgalaxy(current_season: int, state: State):
             # Create a different key for each session type (eg. 2023x04ra)
             key = f'{title[10:17]}{session_type[0:2].lower()}'
 
-            # Retain all data to be posted on MQTT
             if key not in state.races:
                 state.races[key] = Download(key=key, title=title, magnet=magnet)
+                ret = True
 
             if key > state.latest_race:
                 state.latest_race = key
+
+    return ret
 
 
 class RtorrentError(Exception):
