@@ -194,7 +194,7 @@ def check_torrentgalaxy(current_season: int, state: State) -> bool:
 
     feed = feedparser.parse(resp.text)
 
-    logger.info(f'Latest race: {state.latest_race}')
+    logger.info('Latest race: %s', state.latest_race)
     ret = False
 
     for entry in feed['entries']:
@@ -202,7 +202,7 @@ def check_torrentgalaxy(current_season: int, state: State) -> bool:
 
         if 'Formula.1' in title and str(current_season) in title and 'SkyF1HD.1080p' in title:
             if not any(s in title for s in ('Race', 'Qualifying', 'Sprint', 'Season.Review', 'Shootout')) or 'Teds' in title:
-                logger.debug(f'Skipped: {title}')
+                logger.debug('Skipped: %s', title)
                 continue
 
             try:
@@ -217,7 +217,7 @@ def check_torrentgalaxy(current_season: int, state: State) -> bool:
             # Race / Qualifying / Sprint etc
             session_type = title.split('.')[-3]
 
-            logger.debug(f'Found: {title} ({session_type})')
+            logger.debug('Found: %s (%s)', title, session_type)
 
             # Create a different key for each session type (eg. 2023x04ra)
             key = f'{title[10:17]}{session_type[0:2].lower()}'
