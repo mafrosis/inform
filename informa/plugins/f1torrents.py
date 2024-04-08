@@ -35,6 +35,10 @@ RTORRENT_HOST = '192.168.1.104'
 PLUGIN_NAME = __name__
 TEMPLATE_NAME = 'f1torrents.tmpl'
 
+RT_PRI_HIGH = 2
+RT_PRI_NORM = 1
+RT_PRI_OFF = 0
+
 
 @dataclass
 class Download(JsonSchemaMixin):
@@ -126,8 +130,8 @@ def set_torrent_file_priorities():
                 try:
                     pri = rt.get_file_priority(hash_id, i)
 
-                    if pri != 2:
-                        rt.set_file_priority(hash_id, i, 2)
+                    if pri != RT_PRI_HIGH:
+                        rt.set_file_priority(hash_id, i, RT_PRI_HIGH)
                         logger.debug('Set high priority on %s', torrent_data['name'])
 
                 except RtorrentError as e:
@@ -386,8 +390,8 @@ class RTorrent:
                     data[d[0]]['files'].append({
                         'filename': f[0],
                         'size': format_size(f[1]),
-                        'progress': f'{float(f[3]) / float(f[2]) * 100:.1f}%' if f[2] else 0,  # pylint: disable=consider-using-f-string
-                        'priority': 'skip' if f[4] == 0 else 'high' if f[4] == 2 else 'normal',
+                        'progress': f'{float(f[3]) / float(f[2]) * 100:.1f}%' if f[2] else 0,
+                        'priority': 'skip' if f[4] == RT_PRI_OFF else 'high' if f[4] == RT_PRI_HIGH else 'normal',
                     })
 
                 try:
@@ -398,7 +402,7 @@ class RTorrent:
                     torrent_progress = 0
 
                 data[d[0]]['progress'] = f'{torrent_progress:.1f}%'
-                data[d[0]]['complete'] = torrent_progress == 100
+                data[d[0]]['complete'] = torrent_progress == 100  # noqa: PLR2004
 
         return data
 
