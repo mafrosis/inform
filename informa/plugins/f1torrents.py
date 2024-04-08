@@ -226,7 +226,7 @@ class RtorrentError(Exception):
 
 
 class SCGITransport(xmlrpc.client.Transport):
-    def single_request(self, host, handler, request_body, verbose=0):
+    def single_request(self, host, handler, request_body, verbose=0):  # noqa: ARG002
         # Create SCGI header
         header = f'CONTENT_LENGTH\x00{len(request_body)}\x00SCGI\x001\x00'
         request_body = f'{len(header)}:{header},{request_body}'
@@ -271,7 +271,7 @@ class SCGITransport(xmlrpc.client.Transport):
 
 
 class SCGIServerProxy(xmlrpc.client.ServerProxy):
-    def __init__(self, uri):  # pylint: disable=super-init-not-called
+    def __init__(self, uri):
         uri = urlparse(uri)
         if uri.scheme != 'scgi':
             raise IOError(f'unsupported XML-RPC protocol {uri.scheme}')
@@ -310,8 +310,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
         return f'<SCGIServerProxy for {self.__host}{self.__handler}>'
 
     def __getattr__(self, name):
-        # magic method dispatcher
-        return xmlrpc.client._Method(self.__request, name)
+        return xmlrpc.client._Method(self.__request, name)  # noqa: SLF001
 
     def __call__(self, attr):
         '''
@@ -474,7 +473,7 @@ def format_size(size):
     i = int(math.floor(math.log(size, 1024)))
     s = round(size / math.pow(1024, i), 2)
 
-    return '{}{}'.format(s, ('B', 'KB', 'MB', 'GB', 'TB', 'PB')[i])  # pylint: disable=consider-using-f-string
+    return '{}{}'.format(s, ('B', 'KB', 'MB', 'GB', 'TB', 'PB')[i])
 
 
 @click.group(name=PLUGIN_NAME[16:])
@@ -520,7 +519,7 @@ def calendar(write: bool):
         gc = GoogleCalendar(
             credentials_path='gcp_oauth_secret.json',
             authentication_flow_host='home.mafro.net',
-            authentication_flow_bind_addr='0.0.0.0',
+            authentication_flow_bind_addr='0.0.0.0',  # noqa: S104
             authentication_flow_port=3002,
             read_only=True,
         )
