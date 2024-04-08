@@ -53,7 +53,7 @@ def list_plugins():
     '''
     List configured plugins
     '''
-    for plug in PLUGINS.keys():
+    for plug in PLUGINS:
         print(plug)
 
 
