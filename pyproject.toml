@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "informa"
 description = "API scraper and more based on rocketry"
-dynamic = ["version", "readme"]
+dynamic = ["version"]
 requires-python = ">=3.11"
 classifiers = [
 	"Development Status :: 4 - Beta",
@@ -36,15 +36,43 @@ dependencies = [
 [project.scripts]
 informa = "informa.cli:cli"
 
-[tool.setuptools.packages.find]
+##### Hatch
+
+[tool.hatch.version]
+path = "informa/__init__.py"
+
+[tool.hatch.build.targets.sdist]
 exclude = ["test*", "venv*"]
 
-[tool.setuptools.package-data]
-informa = ["*.txt", "*.md", "LICENSE"]
+[tool.hatch.metadata]
+allow-direct-references = true
 
-[tool.setuptools.dynamic]
-version = {attr = "informa.__version__"}
-readme = {file = ["README.md"]}
 
-[tool.distutils.bdist_wheel]
-universal = true
+[tool.hatch.envs.default]
+dependencies = ["ipdb"]
+
+[tool.hatch.envs.test]
+dependencies = [
+	"google-api-python-client-stubs",
+	"pandas-stubs",
+	"pytest",
+	"pytest-sugar",
+	"pytest-mypy",
+	"types-beautifulsoup4",
+	"types-click",
+	"types-PyYAML",
+	"types-requests",
+]
+
+[tool.hatch.envs.test.scripts]
+test = "pytest --disable-pytest-warnings test"
+mypy = "pytest --mypy informa"
+
+[tool.hatch.envs.lint]
+detached = true  # do not install package
+dependencies = [
+	"pylint",
+]
+
+[tool.hatch.envs.lint.scripts]
+lint = "pylint informa"

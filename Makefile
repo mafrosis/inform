@@ -1,15 +1,15 @@
-.PHONY: build
-build:
-	docker compose build informa
-
-.PHONY: run
-run:
-	docker compose up --no-build
-
 .PHONY: lint
 lint:
-	docker compose run --rm --entrypoint=pylint test /src/informa
+	hatch run lint:lint
 
 .PHONY: typecheck
 typecheck:
-	docker compose run --rm test --mypy /src/informa
+	hatch run test:mypy
+
+.PHONY: test
+test:
+	hatch run test:test
+
+.PHONY: dist
+dist:
+	hatch build
