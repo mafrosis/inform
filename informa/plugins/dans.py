@@ -141,10 +141,7 @@ def query_product(sess, product: Product) -> decimal.Decimal:
     try:
         # Pull out the current single bottle price
         prices = resp.json()['Products'][0]['Prices']
-        if 'promoprice' in prices:
-            prices = prices['promoprice']
-        else:
-            prices = prices['singleprice']
+        prices = prices['promoprice'] if 'promoprice' in prices else prices['singleprice']
 
         # Continue with current price as decimal
         current_price = decimal.Decimal(str(prices['Value']))
