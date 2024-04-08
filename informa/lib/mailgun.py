@@ -52,7 +52,7 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
     except KeyError as e:
         raise MailgunKeyMissing from e
 
-    env = Environment(loader=FileSystemLoader('templates'))
+    env = Environment(loader=FileSystemLoader('templates'), autoescape=True)
 
     if template:
         if not template.endswith('.tmpl'):
