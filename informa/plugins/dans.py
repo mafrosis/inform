@@ -1,3 +1,4 @@
+import contextlib
 import datetime
 import decimal
 import logging
@@ -79,10 +80,8 @@ def main(state: State, config: Config):
 
     # Iterate configured list of Dan's products
     for product in config.products:
-        try:
+        with contextlib.suppress(ProductNeverAlerted):
             history_item, _ = get_last_alert(product, state.history)
-        except ProductNeverAlerted:
-            pass
 
         try:
             current_price = query_product(sess, product)
