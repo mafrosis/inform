@@ -34,7 +34,7 @@ PLUGINS = init_plugins()
 
 # Iterate plugins, looking for Click Groups to include in the CLI
 for plugin_module in PLUGINS.values():
-    for name, member in inspect.getmembers(plugin_module):
+    for _, member in inspect.getmembers(plugin_module):
         if isinstance(member, click.core.Group):
             plugin_.add_command(member)
 
