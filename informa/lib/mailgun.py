@@ -49,8 +49,8 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
     '''
     try:
         api_key = os.environ['MAILGUN_KEY']
-    except:
-        raise MailgunKeyMissing
+    except KeyError as e:
+        raise MailgunKeyMissing from e
 
     env = Environment(loader=FileSystemLoader('templates'))
 

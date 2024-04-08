@@ -137,7 +137,7 @@ def query_product(sess, product: Product) -> decimal.Decimal:
         # Fetch single product from Dan's API
         resp = sess.get(f'https://api.danmurphys.com.au/apis/ui/Product/{product.id}', timeout=5)
     except requests.RequestException as e:
-        raise FailedProductQuery(f'Failed loading from {product.name}: {e}')
+        raise FailedProductQuery(f'Failed loading from {product.name}: {e}') from e
 
     try:
         # Pull out the current single bottle price
@@ -151,7 +151,7 @@ def query_product(sess, product: Product) -> decimal.Decimal:
         current_price = decimal.Decimal(str(prices['Value']))
 
     except (KeyError, IndexError) as e:
-        raise FailedProductQuery(f'{e.__class__.__name__} {e} parsing price for {product.name}')
+        raise FailedProductQuery(f'{e.__class__.__name__} {e} parsing price for {product.name}') from e
 
     logger.debug('Querying %s %s for target=%s, actual=%s', product.id, product.name, product.target, current_price)
 
