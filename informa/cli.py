@@ -70,8 +70,8 @@ def get_plugin(command: str):
     if len(matches) == 1:
         # Only one plugin exists with passed prefix, so assume a match
         return PLUGINS[matches[0]]
-    else:
-        raise PluginNotFound
+
+    raise PluginNotFound
 
 
 @cli.command

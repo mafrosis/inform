@@ -312,7 +312,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
 
         if not response:
             return None
-        elif len(response) == 1:
+        if len(response) == 1:
             response = response[0]
 
         return response
@@ -330,7 +330,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
         '''
         if attr == 'close':
             return self.__close
-        elif attr == 'transport':
+        if attr == 'transport':
             return self.__transport
 
         raise AttributeError(f'Attribute {attr} not found')
