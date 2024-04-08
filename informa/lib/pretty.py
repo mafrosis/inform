@@ -1,11 +1,9 @@
-from typing import Optional
-
 import pandas as pd
 from rich.console import Console
 from rich.table import Table
 
 
-def table(data: list[dict], columns: list[str], title: Optional[str] = None):
+def table(data: list[dict], columns: list[str], title: str | None = None):
     tbl = Table(title=title)
 
     for c in columns:
@@ -17,7 +15,7 @@ def table(data: list[dict], columns: list[str], title: Optional[str] = None):
     Console().print(tbl)
 
 
-def dataframe(df: pd.DataFrame, title: Optional[str] = None):
+def dataframe(df: pd.DataFrame, title: str | None = None):
     tbl = Table(title=title)
 
     if 'date' in df.columns:

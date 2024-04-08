@@ -2,7 +2,7 @@ import datetime
 import decimal
 import logging
 from dataclasses import dataclass, field
-from typing import Optional, cast
+from typing import cast
 
 import click
 import pandas as pd
@@ -37,7 +37,7 @@ class History(JsonSchemaMixin):
     product: Product
     price: decimal.Decimal
     ts: datetime.datetime
-    alerted: bool = field(default=False)
+    alerted: bool = False
 
     def flatten(self):
         return {
@@ -50,7 +50,7 @@ class History(JsonSchemaMixin):
 
 @dataclass
 class State(JsonSchemaMixin):
-    last_run: Optional[datetime.date] = field(default=None)
+    last_run: datetime.date | None = None
     history: list[History] = field(default_factory=list)
 
 class FailedProductQuery(Exception):
@@ -75,7 +75,7 @@ def main(state: State, config: Config):
 
     sess = requests.Session()
 
-    history_item: Optional[History] = None
+    history_item: History | None = None
 
     # Iterate configured list of Dan's products
     for product in config.products:

@@ -2,7 +2,6 @@ import datetime
 import logging
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 import click
 import feedparser
@@ -22,7 +21,7 @@ TEMPLATE_NAME = 'torrentgalaxy.tmpl'
 
 @dataclass
 class State(JsonSchemaMixin):
-    last_run: Optional[datetime.date] = field(default=None)
+    last_run: datetime.date | None = None
     last_seen: dict[int, str] = field(default_factory=dict)
 
 @dataclass

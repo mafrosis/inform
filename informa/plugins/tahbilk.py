@@ -1,7 +1,6 @@
 import datetime
 import logging
 from dataclasses import dataclass, field
-from typing import Optional
 
 import bs4
 import click
@@ -19,7 +18,7 @@ TEMPLATE_NAME = 'tahbilk.tmpl'
 
 @dataclass
 class State(JsonSchemaMixin):
-    last_run: Optional[datetime.date] = field(default=None)
+    last_run: datetime.date | None = None
     products_seen: set[str] = field(default_factory=set)
 
 

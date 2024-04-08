@@ -5,7 +5,7 @@ import re
 import socket
 import xmlrpc.client
 from dataclasses import dataclass, field
-from typing import Optional, cast
+from typing import cast
 from urllib.parse import urlparse
 
 import click
@@ -41,11 +41,11 @@ class Download(JsonSchemaMixin):
     key: str
     title: str
     magnet: str
-    added_to_rtorrent: bool = field(default=False)
+    added_to_rtorrent: bool = False
 
 @dataclass
 class State(JsonSchemaMixin):
-    last_run: Optional[datetime.date] = field(default=now_aest())
+    last_run: datetime.date | None = field(default=now_aest())
     latest_race: str = field(default='')
     races: dict[str, Download] = field(default_factory=dict)
 
@@ -61,7 +61,7 @@ class Race(JsonSchemaMixin):
 @dataclass
 class Config(ConfigBase):
     current_season: int
-    calendar: Optional[list[Race]] = None
+    calendar: list[Race] | None = None
 
 
 @app.cond()

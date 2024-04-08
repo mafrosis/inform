@@ -1,7 +1,6 @@
 import datetime
 import logging
-from dataclasses import dataclass, field
-from typing import Optional
+from dataclasses import dataclass
 
 import bs4
 import click
@@ -19,8 +18,8 @@ TEMPLATE_NAME = 'ha.tmpl'
 
 @dataclass
 class State(JsonSchemaMixin):
-    last_run: Optional[datetime.date] = field(default=None)
-    last_release_seen: Optional[str] = field(default=None)
+    last_run: datetime.date | None = None
+    last_release_seen: str | None = None
 
 
 @app.task('every 12 hours', name=__name__)
@@ -36,7 +35,7 @@ def main(state: State):
         state.last_release_seen = ver
 
 
-def fetch_ha_releases(last_release_seen: Optional[str]):
+def fetch_ha_releases(last_release_seen: str | None):
     try:
         # Fetch release notes page
         resp = requests.get('https://www.home-assistant.io/blog/categories/release-notes/', timeout=5)
