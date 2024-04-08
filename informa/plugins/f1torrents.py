@@ -76,9 +76,10 @@ def is_f1_weekend():
         logger.error('No F1 calendar configured, use: informa plugin f1torrents calendar')
         return False
 
+    today = datetime.datetime.now(tz=datetime.UTC).date()
+
     for race in config.calendar:
-        if datetime.date.today() >= race.start.date() - datetime.timedelta(days=3) and \
-           datetime.date.today() < race.start.date() + datetime.timedelta(days=3):
+        if race.start.date() - datetime.timedelta(days=3) < today < race.start.date() + datetime.timedelta(days=3):
             return True
 
     logger.debug('Today not within F1 weekend range')
