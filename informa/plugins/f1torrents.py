@@ -197,11 +197,13 @@ def check_torrentgalaxy(current_season: int, state: State) -> bool:
     logger.info('Latest race: %s', state.latest_race)
     ret = False
 
+    RACE_TYPES = {'Race', 'Qualifying', 'Sprint', 'Season.Review', 'Shootout'}
+
     for entry in feed['entries']:
         title = entry['title']
 
         if 'Formula.1' in title and str(current_season) in title and 'SkyF1HD.1080p' in title:
-            if not any(s in title for s in ('Race', 'Qualifying', 'Sprint', 'Season.Review', 'Shootout')) or 'Teds' in title:
+            if not any(s in title for s in RACE_TYPES) or 'Teds' in title:
                 logger.debug('Skipped: %s', title)
                 continue
 
