@@ -1,20 +1,18 @@
 import abc
 import datetime
 import inspect
-import json
 import logging
 import os
-import sys
-from typing import Callable, cast, Optional, Type, Union
-from zoneinfo import ZoneInfo
+from collections.abc import Callable
+from typing import Optional, Union
 
+import yaml
 from dataclasses_jsonschema import JsonSchemaMixin, ValidationError
 from fastapi import FastAPI
 from rocketry import Rocketry
-import yaml
+from zoneinfo import ZoneInfo
 
 from informa.exceptions import AppError
-
 
 app = Rocketry(config={
     'execution': 'thread',
@@ -43,7 +41,7 @@ class ConfigBase(JsonSchemaMixin, metaclass=abc.ABCMeta):
 
 def load_run_persist(
         logger: Union[logging.Logger, logging.LoggerAdapter],
-        state_cls: Type[JsonSchemaMixin],
+        state_cls: type[JsonSchemaMixin],
         plugin_name: str,
         main_func: Callable
     ):
@@ -63,7 +61,7 @@ def load_run_persist(
         # Reload config each time plugin runs
         state = load_state(logger, state_cls, plugin_name)
 
-        plugin_config_class: Optional[Type[ConfigBase]] = None
+        plugin_config_class: Optional[type[ConfigBase]] = None
 
         # Introspect the passed main_func for a Config parameter
         for param in inspect.getfullargspec(main_func).annotations.values():
@@ -99,13 +97,13 @@ def now_aest() -> datetime.datetime:
     return datetime.datetime.now(ZoneInfo('Australia/Melbourne'))
 
 
-def load_config(config_cls: Type[ConfigBase], plugin_name: str) -> Optional[JsonSchemaMixin]:
+def load_config(config_cls: type[ConfigBase], plugin_name: str) -> Optional[JsonSchemaMixin]:
     return load_file('config', config_cls, plugin_name)
 
 
 def load_state(
         logger: Union[logging.Logger, logging.LoggerAdapter],
-        state_cls: Type[JsonSchemaMixin],
+        state_cls: type[JsonSchemaMixin],
         plugin_name: str
     ) -> JsonSchemaMixin:
     '''
@@ -121,7 +119,7 @@ def load_state(
     return state
 
 
-def load_file(directory: str, cls: Type[JsonSchemaMixin], plugin_name: str) -> Optional[JsonSchemaMixin]:
+def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> Optional[JsonSchemaMixin]:
     '''
     Utility function to load plugin config/state from a file
 

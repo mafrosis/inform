@@ -1,5 +1,5 @@
-from dataclasses_jsonschema import JsonSchemaMixin
 import yaml
+from dataclasses_jsonschema import JsonSchemaMixin
 
 
 def write_config(config: JsonSchemaMixin, plugin_name: str):

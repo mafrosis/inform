@@ -1,16 +1,23 @@
-from dataclasses import dataclass, field
 import datetime
 import decimal
 import logging
-from typing import cast, List, Optional, Tuple
+from dataclasses import dataclass, field
+from typing import Optional, cast
 
 import click
-from dataclasses_jsonschema import JsonSchemaMixin
 import pandas as pd
 import requests
+from dataclasses_jsonschema import JsonSchemaMixin
 
-from informa.lib import app, ConfigBase, load_run_persist, load_state, mailgun, now_aest, PluginAdapter
-
+from informa.lib import (
+    ConfigBase,
+    PluginAdapter,
+    app,
+    load_run_persist,
+    load_state,
+    mailgun,
+    now_aest,
+)
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -44,7 +51,7 @@ class History(JsonSchemaMixin):
 @dataclass
 class State(JsonSchemaMixin):
     last_run: Optional[datetime.date] = field(default=None)
-    history: List[History] = field(default_factory=list)
+    history: list[History] = field(default_factory=list)
 
 class FailedProductQuery(Exception):
     pass
@@ -55,7 +62,7 @@ class ProductNeverAlerted(Exception):
 
 @dataclass
 class Config(ConfigBase):
-    products: List[Product]
+    products: list[Product]
 
 
 @app.task('every 12 hours', name=__name__)
@@ -98,7 +105,7 @@ def main(state: State, config: Config):
             logger.error(e)
 
 
-def get_last_alert(product: Product, history: List[History]) -> Tuple[History, int]:
+def get_last_alert(product: Product, history: list[History]) -> tuple[History, int]:
     'Lookup most recent alert for this product'
     for i, history_item in enumerate(reversed(history)):
         if history_item.product == product and history_item.alerted:
@@ -106,7 +113,7 @@ def get_last_alert(product: Product, history: List[History]) -> Tuple[History, i
     raise ProductNeverAlerted
 
 
-def add_to_history(history: List[History], new_history: History):
+def add_to_history(history: list[History], new_history: History):
     'Add query result to product history'
     # Remove history over 13 months old
     for i, history_item in enumerate(history):
@@ -196,11 +203,11 @@ def stats():
     query_range.columns = query_range.columns.get_level_values(1)
 
     # Pull price from most recent query
-    latest_price = df.sort_values(['ts']).groupby('name').tail(1).set_index('name').drop(columns=['id','ts'])
+    latest_price = df.sort_values(['ts']).groupby('name').tail(1).set_index('name').drop(columns=['id', 'ts'])
 
     # Smash into single dataframe
     df = pd.concat([price_range, latest_price, query_range], axis=1)
-    df.columns = ['Count','Min','Max','Median','Target','Latest','First','Most Recent']
+    df.columns = ['Count', 'Min', 'Max', 'Median', 'Target', 'Latest', 'First', 'Most Recent']
     df['First'] = df['First'].dt.strftime('%d-%m-%Y')
     df['Most Recent'] = df['Most Recent'].dt.strftime('%d-%m-%Y')
     print(df)

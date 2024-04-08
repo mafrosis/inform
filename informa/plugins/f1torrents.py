@@ -1,25 +1,32 @@
-from dataclasses import dataclass, field
 import datetime
 import logging
 import math
 import re
 import socket
-from socket import error as SocketError
-from typing import cast, Dict, List, Optional
-from urllib.parse import urlparse
 import xmlrpc.client
+from dataclasses import dataclass, field
+from typing import Optional, cast
+from urllib.parse import urlparse
 
 import click
-from dataclasses_jsonschema import JsonSchemaMixin
 import feedparser
-from gcsa.google_calendar import GoogleCalendar
 import requests
+from dataclasses_jsonschema import JsonSchemaMixin
+from gcsa.google_calendar import GoogleCalendar
 from rocketry.conds import cron
 
 from informa.helpers import write_config
-from informa.lib import (app, ConfigBase, load_run_persist, load_config, load_state, mailgun,
-                         now_aest, PluginAdapter, pretty)
-
+from informa.lib import (
+    ConfigBase,
+    PluginAdapter,
+    app,
+    load_config,
+    load_run_persist,
+    load_state,
+    mailgun,
+    now_aest,
+    pretty,
+)
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -40,7 +47,7 @@ class Download(JsonSchemaMixin):
 class State(JsonSchemaMixin):
     last_run: Optional[datetime.date] = field(default=now_aest())
     latest_race: str = field(default='')
-    races: Dict[str, Download] = field(default_factory=dict)
+    races: dict[str, Download] = field(default_factory=dict)
 
 class FailedFetchingTorrents(Exception):
     pass
@@ -54,7 +61,7 @@ class Race(JsonSchemaMixin):
 @dataclass
 class Config(ConfigBase):
     current_season: int
-    calendar: Optional[List[Race]] = None
+    calendar: Optional[list[Race]] = None
 
 
 @app.cond()
@@ -134,7 +141,7 @@ def add_torrents():
     add_magnet_to_rtorrent(state.races)
 
 
-def add_magnet_to_rtorrent(races: Dict[str, Download]):
+def add_magnet_to_rtorrent(races: dict[str, Download]):
     '''
     Add magnets directly to rtorrent via RPC
     '''
@@ -274,7 +281,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
     def __init__(self, uri):
         uri = urlparse(uri)
         if uri.scheme != 'scgi':
-            raise IOError(f'unsupported XML-RPC protocol {uri.scheme}')
+            raise OSError(f'unsupported XML-RPC protocol {uri.scheme}')
 
         self.__host = uri.netloc
         self.__handler = uri.path
@@ -325,7 +332,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
         raise AttributeError(f'Attribute {attr} not found')
 
 
-class RTorrent():
+class RTorrent:
     def __init__(self, host, port):
         self.server = SCGIServerProxy(f'scgi://{host}:{port}/')
 
@@ -345,7 +352,7 @@ class RTorrent():
 
         except ConnectionRefusedError as e:
             raise RtorrentError('get_torrents: Rtorrent is down') from e
-        except (xmlrpc.client.Fault, SocketError) as e:
+        except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'get_torrents: Failed to load from rtorrent SCGI: {e}') from e
 
         data = {}
@@ -372,20 +379,20 @@ class RTorrent():
                     )
                 except ConnectionRefusedError as e:
                     raise RtorrentError('get_torrents: Rtorrent is down') from e
-                except (xmlrpc.client.Fault, SocketError) as e:
+                except (OSError, xmlrpc.client.Fault) as e:
                     raise RtorrentError(f'get_torrents: Failed to load d.files from rtorrent SCGI: {e}') from e
 
                 for f in files:
                     data[d[0]]['files'].append({
                         'filename': f[0],
                         'size': format_size(f[1]),
-                        'progress': '{0:.1f}%'.format(float(f[3]) / float(f[2]) * 100) if f[2] else 0,  # pylint: disable=consider-using-f-string
+                        'progress': f'{float(f[3]) / float(f[2]) * 100:.1f}%' if f[2] else 0,  # pylint: disable=consider-using-f-string
                         'priority': 'skip' if f[4] == 0 else 'high' if f[4] == 2 else 'normal',
                     })
 
                 try:
                     # torrent total progress based on each file's progress, ignoring "skipped" files
-                    torrent_progress = sum((f[3] for f in files if f[4] > 0)) / sum((f[2] for f in files if f[4] > 0)) * 100
+                    torrent_progress = sum(f[3] for f in files if f[4] > 0) / sum(f[2] for f in files if f[4] > 0) * 100
                 except ZeroDivisionError:
                     # all files are "skip"
                     torrent_progress = 0
@@ -408,7 +415,7 @@ class RTorrent():
 
         except ConnectionRefusedError as e:
             raise RtorrentError('add_magnet: Rtorrent is down') from e
-        except (xmlrpc.client.Fault, SocketError) as e:
+        except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'add_magnet: Failed to add magnet: {e}') from e
 
 
@@ -425,7 +432,7 @@ class RTorrent():
 
         except ConnectionRefusedError as e:
             raise RtorrentError('set_tag: Rtorrent is down') from e
-        except (xmlrpc.client.Fault, SocketError) as e:
+        except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'set_tag: Failed to load from rtorrent SCGI: {e}') from e
 
 
@@ -443,7 +450,7 @@ class RTorrent():
 
         except ConnectionRefusedError as e:
             raise RtorrentError('set_file_priority: Rtorrent is down') from e
-        except (xmlrpc.client.Fault, SocketError) as e:
+        except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'set_file_priority: Failed to load from rtorrent SCGI: {e}') from e
 
 
@@ -462,7 +469,7 @@ class RTorrent():
 
         except ConnectionRefusedError as e:
             raise RtorrentError('get_file_priority: Rtorrent is down') from e
-        except (xmlrpc.client.Fault, SocketError) as e:
+        except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'get_file_priority: Failed to load from rtorrent SCGI: {e}') from e
 
 
@@ -502,7 +509,7 @@ def get_torrents():
     rt = RTorrent(RTORRENT_HOST, 5000)
     try:
         torrents = rt.get_torrents()
-        pretty.table([t for t in torrents.values() if 'Formula.1' in t['name']],  columns=('progress', 'name'))
+        pretty.table([t for t in torrents.values() if 'Formula.1' in t['name']], columns=('progress', 'name'))
     except RtorrentError as e:
         logger.error(e)
 
@@ -514,7 +521,7 @@ def calendar(write: bool):
     'Fetch F1 calendar for the current configured year, and write to config'
     config = load_config(Config, PLUGIN_NAME)
 
-    def fetch_f1_calendar() -> Dict[str, datetime.datetime]:
+    def fetch_f1_calendar() -> dict[str, datetime.datetime]:
         'Fetch current F1 calendar'
         gc = GoogleCalendar(
             credentials_path='gcp_oauth_secret.json',

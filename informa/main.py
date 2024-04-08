@@ -1,24 +1,22 @@
+import asyncio
 import functools
 import importlib
 import inspect
 import logging
 from types import ModuleType
-from typing import Dict
 
-import asyncio
-from fastapi import APIRouter
 import uvicorn
 import yaml
+from fastapi import APIRouter
 
 from informa.api import app_fastapi
 from informa.lib import app as app_rocketry
 
-
 logger = logging.getLogger('informa')
 
 
-@functools.lru_cache()
-def init_plugins() -> Dict[str, ModuleType]:
+@functools.lru_cache
+def init_plugins() -> dict[str, ModuleType]:
     # Load active plugins from YAML config
     with open('plugins.yaml', encoding='utf8') as f:
         plugins = yaml.safe_load(f)['plugins']

@@ -1,15 +1,14 @@
-from dataclasses import dataclass, field
 import datetime
 import logging
+from dataclasses import dataclass, field
 from typing import Optional
 
 import bs4
 import click
-from dataclasses_jsonschema import JsonSchemaMixin
 import requests
+from dataclasses_jsonschema import JsonSchemaMixin
 
-from informa.lib import app, load_run_persist, load_state, mailgun, now_aest, PluginAdapter
-
+from informa.lib import PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -78,7 +77,7 @@ def fetch_ha_releases(last_release_seen: Optional[str]):
     return last_release_seen
 
 
-@click.group(name=PLUGIN_NAME[16:].replace('_','-'))
+@click.group(name=PLUGIN_NAME[16:].replace('_', '-'))
 def cli():
     'Home Assistant release tracker'
 

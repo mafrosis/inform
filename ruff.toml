@@ -1,3 +1,10 @@
+line-length = 120
+fix = true
+extend-exclude = ["gcsa", "gmsa", "google-auth-library-python-oauthlib", "transto"]
+
+[format]
+quote-style = "preserve"
+
 [lint]
 ignore = [
 	"EM101",  # https://docs.astral.sh/ruff/rules/raw-string-in-exception

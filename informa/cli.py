@@ -1,15 +1,14 @@
 import asyncio
 import inspect
-import os
 import logging
+import os
 
 import click
 
-
 from informa.exceptions import PluginNotFound
-from informa.main import init_plugins, start as start_app
 from informa.lib import load_run_persist
-
+from informa.main import init_plugins
+from informa.main import start as start_app
 
 logger = logging.getLogger('informa')
 sh = logging.StreamHandler()
@@ -61,7 +60,7 @@ def list_plugins():
 def get_plugin(command: str):
     'Attempt to convert a string into a valid plugin name'
     # Cleanup the passed string
-    command = command.lower().replace('_','-')
+    command = command.lower().replace('_', '-')
 
     if command in PLUGINS:
         # Found plugin by name

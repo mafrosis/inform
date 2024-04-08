@@ -4,13 +4,13 @@ import pathlib
 
 from fastapi import APIRouter
 
-from informa.lib import fastapi as app_fastapi, PluginAdapter
-
+from informa.lib import PluginAdapter
+from informa.lib import fastapi as app_fastapi
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
 
-MP3HOME=os.environ.get('MP3HOME', '/home/mafro/music/')
+MP3HOME = os.environ.get('MP3HOME', '/home/mafro/music/')
 
 
 router = APIRouter(prefix='/mp3')

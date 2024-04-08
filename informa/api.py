@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 
-from informa.lib import fastapi as app_fastapi, app as app_rocketry
-
+from informa.lib import app as app_rocketry
+from informa.lib import fastapi as app_fastapi
 
 # CORS support for React frontends
 app_fastapi.add_middleware(

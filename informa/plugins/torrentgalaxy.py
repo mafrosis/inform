@@ -1,18 +1,17 @@
-from dataclasses import dataclass, field
 import datetime
 import logging
 import re
-from typing import Dict, List, Optional
+from dataclasses import dataclass, field
+from typing import Optional
 
 import click
-from dataclasses_jsonschema import JsonSchemaMixin
-from fake_useragent import UserAgent
 import feedparser
 import requests
+from dataclasses_jsonschema import JsonSchemaMixin
+from fake_useragent import UserAgent
 
 from informa import exceptions
-from informa.lib import app, ConfigBase, load_run_persist, load_state, mailgun, now_aest, PluginAdapter
-
+from informa.lib import ConfigBase, PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -24,10 +23,10 @@ TEMPLATE_NAME = 'torrentgalaxy.tmpl'
 @dataclass
 class State(JsonSchemaMixin):
     last_run: Optional[datetime.date] = field(default=None)
-    last_seen: Dict[int, str] = field(default_factory=dict)
+    last_seen: dict[int, str] = field(default_factory=dict)
 
 @dataclass
-class Match():
+class Match:
     title: str
     url: str
     magnet: str
@@ -35,8 +34,8 @@ class Match():
 
 @dataclass
 class Config(ConfigBase):
-    users: List[int]
-    terms: List[str]
+    users: list[int]
+    terms: list[str]
 
 
 @app.task('every 12 hours', name=__name__)
@@ -54,7 +53,7 @@ def main(state: State, config: Config):
         query_torrent(sess, config, uid, state.last_seen)
 
 
-def query_torrent(sess, config: Config, uid: int, last_seen: Dict[int, str]):
+def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
     logger.debug('Querying user %s', uid)
 
     try:

@@ -1,15 +1,14 @@
-from dataclasses import dataclass, field
 import datetime
 import logging
-from typing import Optional, Set
+from dataclasses import dataclass, field
+from typing import Optional
 
 import bs4
 import click
-from dataclasses_jsonschema import JsonSchemaMixin
 import requests
+from dataclasses_jsonschema import JsonSchemaMixin
 
-from informa.lib import app, load_run_persist, load_state, mailgun, now_aest, PluginAdapter
-
+from informa.lib import PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -21,7 +20,7 @@ TEMPLATE_NAME = 'tahbilk.tmpl'
 @dataclass
 class State(JsonSchemaMixin):
     last_run: Optional[datetime.date] = field(default=None)
-    products_seen: Set[str] = field(default_factory=set)
+    products_seen: set[str] = field(default_factory=set)
 
 
 @app.task('every 12 hours', name=__name__)
@@ -35,7 +34,7 @@ def main(state: State):
     query_cellar_releases(state.products_seen)
 
 
-def query_cellar_releases(products_seen: Set[str]):
+def query_cellar_releases(products_seen: set[str]):
     try:
         resp = requests.get('https://www.tahbilk.com.au/cellar-release', timeout=5)
     except requests.RequestException as e:

@@ -1,19 +1,19 @@
 import logging
 import os
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
-from jinja2 import Environment, FileSystemLoader
 import requests
+from jinja2 import Environment, FileSystemLoader
 
-from informa.lib import PluginAdapter
 from informa.exceptions import MailgunKeyMissing, MailgunSendFailed
+from informa.lib import PluginAdapter
 
 
 def send(
         logger: Union[logging.Logger, PluginAdapter],
         subject: str,
-        template: Optional[str]=None,
-        content: Optional[Dict[str, Any]]=None,
+        template: Optional[str] = None,
+        content: Optional[dict[str, Any]] = None,
     ) -> bool:
     '''
     Handle plugin loggers, and any exceptions raised during _send
@@ -30,7 +30,7 @@ def send(
     return True
 
 
-def _send(subject: str, template: Optional[str]=None, content: Optional[Dict[str, Any]]=None):
+def _send(subject: str, template: Optional[str] = None, content: Optional[dict[str, Any]] = None):
     '''
     Send an email via Mailgun
 
