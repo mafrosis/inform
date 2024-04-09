@@ -1,4 +1,3 @@
-import datetime
 import logging
 import re
 from dataclasses import dataclass, field
@@ -6,11 +5,10 @@ from dataclasses import dataclass, field
 import click
 import feedparser
 import requests
-from dataclasses_json import DataClassJsonMixin
 from fake_useragent import UserAgent
 
 from informa import exceptions
-from informa.lib import ConfigBase, PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
+from informa.lib import ConfigBase, PluginAdapter, StateBase, app, load_run_persist, load_state, mailgun
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -20,8 +18,7 @@ TEMPLATE_NAME = 'torrentgalaxy.tmpl'
 
 
 @dataclass
-class State(DataClassJsonMixin):
-    last_run: datetime.date | None = None
+class State(StateBase):
     last_seen: dict[int, str] = field(default_factory=dict)
 
 
@@ -44,8 +41,6 @@ def run():
 
 
 def main(state: State, config: Config):
-    state.last_run = now_aest()
-
     sess = requests.Session()
 
     # Iterate configured torrentgalaxy user IDs

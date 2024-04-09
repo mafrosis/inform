@@ -4,6 +4,8 @@ import inspect
 import logging
 import os
 from collections.abc import Callable
+from dataclasses import dataclass
+from typing import cast
 
 import yaml
 from dataclasses_json import DataClassJsonMixin
@@ -35,14 +37,18 @@ class PluginAdapter(logging.LoggerAdapter):
 
 
 class ConfigBase(DataClassJsonMixin, metaclass=abc.ABCMeta):
-    "Base class from which plugin config classes must inherit"
+    "Base class from which plugin Config classes must inherit"
+
+
+@dataclass
+class StateBase(DataClassJsonMixin):
+    "Base class from which plugin State classes must inherit"
+
+    last_run: datetime.date | None = None
 
 
 def load_run_persist(
-    logger: logging.Logger | logging.LoggerAdapter,
-    state_cls: type[DataClassJsonMixin],
-    plugin_name: str,
-    main_func: Callable,
+    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], plugin_name: str, main_func: Callable
 ):
     """
     Load plugin state, run plugin main function via callback, persist state to disk.
@@ -67,7 +73,7 @@ def load_run_persist(
             if issubclass(param, ConfigBase):
                 plugin_config_class = param
 
-        logger.info('Running')
+        logger.info('Running, last run: %s', state.last_run or 'Never')
 
         if plugin_config_class:
             # Reload config each time plugin runs
@@ -78,6 +84,8 @@ def load_run_persist(
         else:
             # Call plugin without config
             main_func(state)
+
+        state.last_run = now_aest()
 
         # Write plugin state back to disk
         write_state(state, plugin_name)
@@ -97,12 +105,12 @@ def now_aest() -> datetime.datetime:
 
 
 def load_config(config_cls: type[ConfigBase], plugin_name: str) -> DataClassJsonMixin | None:
-    return load_file('config', config_cls, plugin_name)
+    return cast(ConfigBase, load_file('config', config_cls, plugin_name))
 
 
 def load_state(
-    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[DataClassJsonMixin], plugin_name: str
-) -> DataClassJsonMixin:
+    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], plugin_name: str
+) -> StateBase:
     """
     Load or initialise a plugin's state
     """
@@ -113,7 +121,7 @@ def load_state(
     else:
         logger.debug('Loaded state for %s', plugin_name)
 
-    return state
+    return cast(StateBase, state)
 
 
 def load_file(directory: str, cls: type[DataClassJsonMixin], plugin_name: str) -> DataClassJsonMixin | None:
@@ -135,7 +143,7 @@ def load_file(directory: str, cls: type[DataClassJsonMixin], plugin_name: str) -
         return None
 
 
-def write_state(state_obj: DataClassJsonMixin, plugin_name: str):
+def write_state(state_obj: StateBase, plugin_name: str):
     """
     Utility function to write state to a file
 

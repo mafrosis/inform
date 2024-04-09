@@ -13,6 +13,7 @@ from dataclasses_json import DataClassJsonMixin
 from informa.lib import (
     ConfigBase,
     PluginAdapter,
+    StateBase,
     app,
     load_run_persist,
     load_state,
@@ -52,8 +53,7 @@ class History(DataClassJsonMixin):
 
 
 @dataclass
-class State(DataClassJsonMixin):
-    last_run: datetime.date | None = None
+class State(StateBase):
     history: list[History] = field(default_factory=list)
 
 
@@ -76,8 +76,6 @@ def run():
 
 
 def main(state: State, config: Config):
-    state.last_run = now_aest()
-
     sess = requests.Session()
 
     history_item: History | None = None

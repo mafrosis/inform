@@ -1,13 +1,11 @@
-import datetime
 import logging
 from dataclasses import dataclass, field
 
 import bs4
 import click
 import requests
-from dataclasses_json import DataClassJsonMixin
 
-from informa.lib import PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
+from informa.lib import PluginAdapter, StateBase, app, load_run_persist, load_state, mailgun
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -17,8 +15,7 @@ TEMPLATE_NAME = 'tahbilk.tmpl'
 
 
 @dataclass
-class State(DataClassJsonMixin):
-    last_run: datetime.date | None = None
+class State(StateBase):
     products_seen: set[str] = field(default_factory=set)
 
 
@@ -28,8 +25,6 @@ def run():
 
 
 def main(state: State):
-    state.last_run = now_aest()
-
     query_cellar_releases(state.products_seen)
 
 

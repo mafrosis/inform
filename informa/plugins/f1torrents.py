@@ -19,12 +19,12 @@ from informa.helpers import write_config
 from informa.lib import (
     ConfigBase,
     PluginAdapter,
+    StateBase,
     app,
     load_config,
     load_run_persist,
     load_state,
     mailgun,
-    now_aest,
     pretty,
 )
 
@@ -49,8 +49,7 @@ class Download(DataClassJsonMixin):
 
 
 @dataclass
-class State(DataClassJsonMixin):
-    last_run: datetime.date | None = field(default=now_aest())
+class State(StateBase):
     latest_race: str = field(default='')
     races: dict[str, Download] = field(default_factory=dict)
 
@@ -98,8 +97,6 @@ def main(state: State, config: Config):
     """
     Check for new F1 torrents and add to rtorrent
     """
-    state.last_run = now_aest()
-
     if check_torrentgalaxy(config.current_season, state):
         # if torrents found, try to add immediately
         add_magnet_to_rtorrent(state.races)
