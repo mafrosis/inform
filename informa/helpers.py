@@ -1,8 +1,8 @@
+import dataclasses_json
 import yaml
-from dataclasses_jsonschema import JsonSchemaMixin
 
 
-def write_config(config: JsonSchemaMixin, plugin_name: str):
+def write_config(config: dataclasses_json.DataClassJsonMixin, plugin_name: str):
     """
     Helper function to write a config file from code
 

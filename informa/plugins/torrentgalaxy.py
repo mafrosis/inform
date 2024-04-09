@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 import click
 import feedparser
 import requests
-from dataclasses_jsonschema import JsonSchemaMixin
+from dataclasses_json import DataClassJsonMixin
 from fake_useragent import UserAgent
 
 from informa import exceptions
@@ -20,7 +20,7 @@ TEMPLATE_NAME = 'torrentgalaxy.tmpl'
 
 
 @dataclass
-class State(JsonSchemaMixin):
+class State(DataClassJsonMixin):
     last_run: datetime.date | None = None
     last_seen: dict[int, str] = field(default_factory=dict)
 

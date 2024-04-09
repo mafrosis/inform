@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 import click
 import feedparser
 import requests
-from dataclasses_jsonschema import JsonSchemaMixin
+from dataclasses_json import DataClassJsonMixin
 from gcsa.google_calendar import GoogleCalendar
 from rocketry.conds import cron
 
@@ -41,7 +41,7 @@ RT_PRI_OFF = 0
 
 
 @dataclass
-class Download(JsonSchemaMixin):
+class Download(DataClassJsonMixin):
     key: str
     title: str
     magnet: str
@@ -49,7 +49,7 @@ class Download(JsonSchemaMixin):
 
 
 @dataclass
-class State(JsonSchemaMixin):
+class State(DataClassJsonMixin):
     last_run: datetime.date | None = field(default=now_aest())
     latest_race: str = field(default='')
     races: dict[str, Download] = field(default_factory=dict)
@@ -60,7 +60,7 @@ class FailedFetchingTorrents(Exception):
 
 
 @dataclass
-class Race(JsonSchemaMixin):
+class Race(DataClassJsonMixin):
     title: str
     start: datetime.datetime
 

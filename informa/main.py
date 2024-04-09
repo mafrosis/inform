@@ -1,10 +1,12 @@
 import asyncio
+import datetime
 import functools
 import importlib
 import inspect
 import logging
 from types import ModuleType
 
+import dataclasses_json
 import uvicorn
 import yaml
 from fastapi import APIRouter
@@ -13,6 +15,13 @@ from informa.api import app_fastapi
 from informa.lib import app as app_rocketry
 
 logger = logging.getLogger('informa')
+
+
+# Setup dataclasses_json to serialise date & datetime as ISO8601
+dataclasses_json.cfg.global_config.encoders[datetime.date] = datetime.date.isoformat
+dataclasses_json.cfg.global_config.decoders[datetime.date] = datetime.date.fromisoformat
+dataclasses_json.cfg.global_config.encoders[datetime.datetime] = datetime.datetime.isoformat
+dataclasses_json.cfg.global_config.decoders[datetime.datetime] = datetime.datetime.fromisoformat
 
 
 @functools.lru_cache

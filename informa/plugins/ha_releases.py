@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import bs4
 import click
 import requests
-from dataclasses_jsonschema import JsonSchemaMixin
+from dataclasses_json import DataClassJsonMixin
 
 from informa.lib import PluginAdapter, app, load_run_persist, load_state, mailgun, now_aest
 
@@ -17,7 +17,7 @@ TEMPLATE_NAME = 'ha.tmpl'
 
 
 @dataclass
-class State(JsonSchemaMixin):
+class State(DataClassJsonMixin):
     last_run: datetime.date | None = None
     last_release_seen: str | None = None
 

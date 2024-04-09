@@ -8,7 +8,7 @@ from typing import cast
 import click
 import pandas as pd
 import requests
-from dataclasses_jsonschema import JsonSchemaMixin
+from dataclasses_json import DataClassJsonMixin
 
 from informa.lib import (
     ConfigBase,
@@ -28,14 +28,14 @@ TEMPLATE_NAME = 'dans.tmpl'
 
 
 @dataclass
-class Product(JsonSchemaMixin):
+class Product(DataClassJsonMixin):
     id: str
     name: str
     target: int
 
 
 @dataclass
-class History(JsonSchemaMixin):
+class History(DataClassJsonMixin):
     product: Product
     price: decimal.Decimal
     ts: datetime.datetime
@@ -52,7 +52,7 @@ class History(JsonSchemaMixin):
 
 
 @dataclass
-class State(JsonSchemaMixin):
+class State(DataClassJsonMixin):
     last_run: datetime.date | None = None
     history: list[History] = field(default_factory=list)
 

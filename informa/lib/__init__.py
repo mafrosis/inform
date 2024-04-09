@@ -6,8 +6,9 @@ import os
 from collections.abc import Callable
 
 import yaml
-from dataclasses_jsonschema import JsonSchemaMixin, ValidationError
+from dataclasses_json import DataClassJsonMixin
 from fastapi import FastAPI
+from marshmallow.exceptions import ValidationError
 from rocketry import Rocketry
 from zoneinfo import ZoneInfo
 
@@ -33,13 +34,13 @@ class PluginAdapter(logging.LoggerAdapter):
         return f'[{self.extra}] {msg}', kwargs
 
 
-class ConfigBase(JsonSchemaMixin, metaclass=abc.ABCMeta):
+class ConfigBase(DataClassJsonMixin, metaclass=abc.ABCMeta):
     "Base class from which plugin config classes must inherit"
 
 
 def load_run_persist(
     logger: logging.Logger | logging.LoggerAdapter,
-    state_cls: type[JsonSchemaMixin],
+    state_cls: type[DataClassJsonMixin],
     plugin_name: str,
     main_func: Callable,
 ):
@@ -95,13 +96,13 @@ def now_aest() -> datetime.datetime:
     return datetime.datetime.now(ZoneInfo('Australia/Melbourne'))
 
 
-def load_config(config_cls: type[ConfigBase], plugin_name: str) -> JsonSchemaMixin | None:
+def load_config(config_cls: type[ConfigBase], plugin_name: str) -> DataClassJsonMixin | None:
     return load_file('config', config_cls, plugin_name)
 
 
 def load_state(
-    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[JsonSchemaMixin], plugin_name: str
-) -> JsonSchemaMixin:
+    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[DataClassJsonMixin], plugin_name: str
+) -> DataClassJsonMixin:
     """
     Load or initialise a plugin's state
     """
@@ -115,7 +116,7 @@ def load_state(
     return state
 
 
-def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> JsonSchemaMixin | None:
+def load_file(directory: str, cls: type[DataClassJsonMixin], plugin_name: str) -> DataClassJsonMixin | None:
     """
     Utility function to load plugin config/state from a file
 
@@ -126,7 +127,7 @@ def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> J
     """
     try:
         with open(f'{directory}/{plugin_name}.yaml', encoding='utf8') as f:
-            data = yaml.safe_load(f)
+            data = yaml.load(f, Loader=yaml.Loader)  # noqa: S506
             if not data:
                 raise FileNotFoundError
             return cls.from_dict(data)
@@ -134,7 +135,7 @@ def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> J
         return None
 
 
-def write_state(state_obj: JsonSchemaMixin, plugin_name: str):
+def write_state(state_obj: DataClassJsonMixin, plugin_name: str):
     """
     Utility function to write state to a file
 
