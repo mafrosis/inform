@@ -26,7 +26,8 @@ fastapi = FastAPI()
 
 
 class PluginAdapter(logging.LoggerAdapter):
-    def __init__(self, logger_, extra=None):
+    def __init__(self, logger_):
+        # Pass the plugin's name as `extra` param to the logger
         super().__init__(
             logger_,
             inspect.getmodule(inspect.stack()[1][0]).__name__.split('.')[-1].upper()
