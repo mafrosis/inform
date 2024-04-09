@@ -87,8 +87,8 @@ def load_run_persist(
         logger.error(str(e))
     except ValidationError as e:
         logger.error('State ValidationError: %s', str(e))
-    except Exception as e:  # pylint: disable=broad-exception-caught
-        logger.error('Exception %s: %s', e.__class__.__name__, str(e))
+    except Exception:
+        logger.exception('Unhandled exception')
 
 
 def now_aest() -> datetime.datetime:
