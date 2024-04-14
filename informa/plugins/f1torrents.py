@@ -23,7 +23,7 @@ from informa.lib import (
     mailgun,
     pretty,
 )
-from informa.lib.plugin import load_config, load_run_persist, load_state, write_config
+from informa.lib.plugin import load_config, load_run_persist, load_state, write_config, write_state
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -139,10 +139,11 @@ def set_torrent_file_priorities():
 @app.task('every 15 minutes')
 def add_torrents():
     state = cast(State, load_state(logger, State))
-    add_magnet_to_rtorrent(state.races)
+    if add_magnet_to_rtorrent(state.races):
+        write_state(state)
 
 
-def add_magnet_to_rtorrent(races: dict[str, Download]):
+def add_magnet_to_rtorrent(races: dict[str, Download]) -> bool:
     """
     Add magnets directly to rtorrent via RPC
     """
@@ -176,6 +177,9 @@ def add_magnet_to_rtorrent(races: dict[str, Download]):
                     'filename': filename,
                 },
             )
+            return True
+
+    return False
 
 
 def check_torrentgalaxy(current_season: int, state: State) -> bool:
