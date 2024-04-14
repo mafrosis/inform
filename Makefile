@@ -1,6 +1,6 @@
 .PHONY: lint
 lint:
-	hatch run lint:lint
+	hatch fmt --preview
 
 .PHONY: typecheck
 typecheck:
