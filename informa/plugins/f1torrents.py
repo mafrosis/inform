@@ -485,13 +485,6 @@ def cli():
 
 
 @cli.command
-def last_run():
-    "When was the last run?"
-    state = load_state(logger, State, PLUGIN_NAME)
-    print(f'Last run: {state.last_run}')
-
-
-@cli.command
 def found():
     "What races have we found already?"
     state = load_state(logger, State, PLUGIN_NAME)

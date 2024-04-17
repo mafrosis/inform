@@ -13,6 +13,7 @@ from fastapi import APIRouter
 
 from informa.api import app_fastapi
 from informa.lib import app as app_rocketry
+from informa.lib.plugin import setup_plugin_cli
 
 logger = logging.getLogger('informa')
 
@@ -39,6 +40,9 @@ def init_plugins() -> dict[str, ModuleType]:
         try:
             # Dynamic import to register rocketry tasks
             modules[plug] = importlib.import_module(f'informa.plugins.{module_name}')
+
+            setup_plugin_cli(modules[plug])
+
         except ModuleNotFoundError as e:
             logger.error('Plugin "%s" not loaded: %s', plug, e)
             continue

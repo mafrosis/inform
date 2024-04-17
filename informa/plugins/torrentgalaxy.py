@@ -8,7 +8,7 @@ import requests
 from fake_useragent import UserAgent
 
 from informa import exceptions
-from informa.lib import ConfigBase, PluginAdapter, StateBase, app, load_run_persist, load_state, mailgun
+from informa.lib import ConfigBase, PluginAdapter, StateBase, app, load_run_persist, mailgun
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -106,10 +106,3 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
     "Torrent Galaxy user tracker"
-
-
-@cli.command
-def last_run():
-    "When was the last run?"
-    state = load_state(logger, State, PLUGIN_NAME)
-    print(f'Last run: {state.last_run}')

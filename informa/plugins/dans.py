@@ -56,6 +56,7 @@ class History(DataClassJsonMixin):
 class State(StateBase):
     history: list[History] = field(default_factory=list)
 
+
 @dataclass
 class Config(ConfigBase):
     products: list[Product]
@@ -177,13 +178,6 @@ def send_alert(product: Product, current_price: decimal.Decimal):
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
     "Dan Murphy's product tracker"
-
-
-@cli.command
-def last_run():
-    "When was the last run?"
-    state = load_state(logger, State, PLUGIN_NAME)
-    print(f'Last run: {state.last_run}')
 
 
 @cli.command

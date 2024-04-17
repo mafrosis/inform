@@ -66,13 +66,6 @@ def cli():
 
 
 @cli.command
-def last_run():
-    "When was the last run?"
-    state = load_state(logger, State, PLUGIN_NAME)
-    print(f'Last run: {state.last_run}')
-
-
-@cli.command
 def seen():
     "What products have been seen already?"
     state = load_state(logger, State, PLUGIN_NAME)
