@@ -42,15 +42,6 @@ class History(DataClassJsonMixin):
     ts: datetime.datetime
     alerted: bool = False
 
-    def flatten(self):
-        return {
-            'id': self.product.id,
-            'name': self.product.name,
-            'target': self.product.target,
-            'price': self.price,
-            'ts': self.ts,
-        }
-
 
 @dataclass
 class State(StateBase):
@@ -180,15 +171,28 @@ def cli():
     "Dan Murphy's product tracker"
 
 
+def get_history() -> pd.DataFrame:
+    state = cast(State, load_state(logger, State, __name__))
+    df = pd.DataFrame([
+        {
+            'id': h.product.id,
+            'name': h.product.name,
+            'target': h.product.target,
+            'price': h.price,
+            'ts': h.ts,
+        }
+        for h in state.history
+    ])
+    df['ts'] = pd.to_datetime(df.ts, utc=True)
+    return df
+
+
 @cli.command
 def stats():
     """
     Show product stats
     """
-    state = cast(State, load_state(logger, State, PLUGIN_NAME))
-
-    product_history = [h.flatten() for h in state.history]
-    df = pd.DataFrame(product_history)
+    df = get_history()
 
     # Aggregate max/min/median prices
     price_range = df.groupby(['name']).agg({'price': ['count', 'min', 'max', 'median']})
