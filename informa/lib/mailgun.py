@@ -10,14 +10,14 @@ from informa.lib import PluginAdapter
 
 
 def send(
-        logger: logging.Logger | PluginAdapter,
-        subject: str,
-        template: str | None = None,
-        content: dict[str, Any] | None = None,
-    ) -> bool:
-    '''
+    logger: logging.Logger | PluginAdapter,
+    subject: str,
+    template: str | None = None,
+    content: dict[str, Any] | None = None,
+) -> bool:
+    """
     Handle plugin loggers, and any exceptions raised during _send
-    '''
+    """
     if logger.getEffectiveLevel() == logging.DEBUG:
         logger.debug('Skip Mailgun send due to DEBUG')
         return False
@@ -31,7 +31,7 @@ def send(
 
 
 def _send(subject: str, template: str | None = None, content: dict[str, Any] | None = None):
-    '''
+    """
     Send an email via Mailgun
 
     curl -s --user 'api:YOUR_API_KEY' \
@@ -46,7 +46,7 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
         subject:   Email subject line
         template:  The jinja2 template filename in templates/
         content:   K/V data mapping to render template
-    '''
+    """
     try:
         api_key = os.environ['MAILGUN_KEY']
     except KeyError as e:

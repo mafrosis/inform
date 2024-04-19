@@ -69,7 +69,7 @@ def fetch_ha_releases(last_release_seen: str | None):
                 TEMPLATE_NAME,
                 {
                     'version': last_release_seen,
-                }
+                },
             )
             break
 
@@ -78,16 +78,18 @@ def fetch_ha_releases(last_release_seen: str | None):
 
 @click.group(name=PLUGIN_NAME[16:].replace('_', '-'))
 def cli():
-    'Home Assistant release tracker'
+    "Home Assistant release tracker"
+
 
 @cli.command
 def last_run():
-    'When was the last run?'
+    "When was the last run?"
     state = load_state(logger, State, PLUGIN_NAME)
     print(f'Last run: {state.last_run}')
 
+
 @cli.command
 def current():
-    'What is the current HA version?'
+    "What is the current HA version?"
     state = load_state(logger, State, PLUGIN_NAME)
     click.echo(state.last_release_seen or 'Never queried')

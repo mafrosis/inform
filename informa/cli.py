@@ -27,7 +27,8 @@ def cli(debug):
 
 @cli.group('plugin')
 def plugin_():
-    'Invoke a plugin\'s CLI'
+    "Invoke a plugin's CLI"
+
 
 # Load all the plugins at import time
 PLUGINS = init_plugins()
@@ -43,22 +44,22 @@ for plugin_module in PLUGINS.values():
 @click.option('--host', help='Bind FastAPI server to hostname', default='127.0.0.1', type=str)
 @click.option('--port', help='Bind FastAPI server to port', default=3000, type=int)
 def start(host: str, port: int):
-    'Start the async workers for each plugin, and the API server'
+    "Start the async workers for each plugin, and the API server"
     logger.info('Starting FastAPI and Rocketry workers')
     asyncio.run(start_app(host, port))
 
 
 @cli.command
 def list_plugins():
-    '''
+    """
     List configured plugins
-    '''
+    """
     for plug in PLUGINS:
         print(plug)
 
 
 def get_plugin(command: str):
-    'Attempt to convert a string into a valid plugin name'
+    "Attempt to convert a string into a valid plugin name"
     # Cleanup the passed string
     command = command.lower().replace('_', '-')
 
@@ -77,10 +78,10 @@ def get_plugin(command: str):
 @cli.command
 @click.argument('plugin')
 def call(plugin: str):
-    '''
+    """
     Run a single plugin synchronously
 
     PLUGIN - Name of the plugin to run synchronously on the CLI
-    '''
+    """
     plug = get_plugin(plugin)
     load_run_persist(plug.logger, plug.State, plug.PLUGIN_NAME, plug.main)

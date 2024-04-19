@@ -13,11 +13,13 @@ from zoneinfo import ZoneInfo
 
 from informa.exceptions import AppError
 
-app = Rocketry(config={
-    'execution': 'thread',
-    'timezone': ZoneInfo('Australia/Melbourne'),
-    'cycle_sleep': 10,
-})
+app = Rocketry(
+    config={
+        'execution': 'thread',
+        'timezone': ZoneInfo('Australia/Melbourne'),
+        'cycle_sleep': 10,
+    }
+)
 
 fastapi = FastAPI()
 
@@ -25,26 +27,23 @@ fastapi = FastAPI()
 class PluginAdapter(logging.LoggerAdapter):
     def __init__(self, logger_):
         # Pass the plugin's name as `extra` param to the logger
-        super().__init__(
-            logger_,
-            inspect.getmodule(inspect.stack()[1][0]).__name__.split('.')[-1].upper()
-        )
+        super().__init__(logger_, inspect.getmodule(inspect.stack()[1][0]).__name__.split('.')[-1].upper())
 
     def process(self, msg, kwargs):
         return f'[{self.extra}] {msg}', kwargs
 
 
 class ConfigBase(JsonSchemaMixin, metaclass=abc.ABCMeta):
-    'Base class from which plugin config classes must inherit'
+    "Base class from which plugin config classes must inherit"
 
 
 def load_run_persist(
-        logger: logging.Logger | logging.LoggerAdapter,
-        state_cls: type[JsonSchemaMixin],
-        plugin_name: str,
-        main_func: Callable
-    ):
-    '''
+    logger: logging.Logger | logging.LoggerAdapter,
+    state_cls: type[JsonSchemaMixin],
+    plugin_name: str,
+    main_func: Callable,
+):
+    """
     Load plugin state, run plugin main function via callback, persist state to disk.
 
     Dynamically inspects the parameter `main_func` to determine if it has a parameter derived from
@@ -55,7 +54,7 @@ def load_run_persist(
         state_cls:    Plugin state dataclass which is persisted between runs
         plugin_name:  Plugin unique name
         main_func:    Callback function to trigger plugin logic
-    '''
+    """
     try:
         # Reload config each time plugin runs
         state = load_state(logger, state_cls, plugin_name)
@@ -92,7 +91,7 @@ def load_run_persist(
 
 
 def now_aest() -> datetime.datetime:
-    'Utility function to return now as TZ-aware datetime'
+    "Utility function to return now as TZ-aware datetime"
     return datetime.datetime.now(ZoneInfo('Australia/Melbourne'))
 
 
@@ -101,13 +100,11 @@ def load_config(config_cls: type[ConfigBase], plugin_name: str) -> JsonSchemaMix
 
 
 def load_state(
-        logger: logging.Logger | logging.LoggerAdapter,
-        state_cls: type[JsonSchemaMixin],
-        plugin_name: str
-    ) -> JsonSchemaMixin:
-    '''
+    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[JsonSchemaMixin], plugin_name: str
+) -> JsonSchemaMixin:
+    """
     Load or initialise a plugin's state
-    '''
+    """
     state = load_file('state', state_cls, plugin_name)
     if not state:
         logger.debug('Empty state initialised for %s', plugin_name)
@@ -119,14 +116,14 @@ def load_state(
 
 
 def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> JsonSchemaMixin | None:
-    '''
+    """
     Utility function to load plugin config/state from a file
 
     Params:
         directory:    Directory path; either "config" or "state"
         cls:          Plugin's state/config class type
         plugin_name:  Plugin's name
-    '''
+    """
     try:
         with open(f'{directory}/{plugin_name}.yaml', encoding='utf8') as f:
             data = yaml.safe_load(f)
@@ -136,14 +133,15 @@ def load_file(directory: str, cls: type[JsonSchemaMixin], plugin_name: str) -> J
     except FileNotFoundError:
         return None
 
+
 def write_state(state_obj: JsonSchemaMixin, plugin_name: str):
-    '''
+    """
     Utility function to write state to a file
 
     Params:
         cls:          Plugin's state object
         plugin_name:  Plugin's name
-    '''
+    """
     if not os.path.exists('state'):
         os.mkdir('state')
 

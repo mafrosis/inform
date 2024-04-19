@@ -19,6 +19,7 @@ app_fastapi.add_middleware(
 #
 router_config = APIRouter(tags=['config'])
 
+
 @router_config.get('/session/config')
 def get_session_config():
     return {
@@ -33,6 +34,7 @@ def get_session_config():
         'multilaunch': app_rocketry.session.config.multilaunch,
         'debug': app_rocketry.session.config.debug,
     }
+
 
 @router_config.patch('/session/config')
 def patch_session_config(values: dict):

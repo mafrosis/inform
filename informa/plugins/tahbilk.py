@@ -58,7 +58,7 @@ def query_cellar_releases(products_seen: set[str]):
                 {
                     'title': title,
                     'price': price,
-                }
+                },
             )
 
         # Track all seen products, so they're notified only once
@@ -67,16 +67,18 @@ def query_cellar_releases(products_seen: set[str]):
 
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
-    'Tahbilk CLI'
+    "Tahbilk CLI"
+
 
 @cli.command
 def last_run():
-    'When was the last run?'
+    "When was the last run?"
     state = load_state(logger, State, PLUGIN_NAME)
     print(f'Last run: {state.last_run}')
 
+
 @cli.command
 def seen():
-    'What products have been seen already?'
+    "What products have been seen already?"
     state = load_state(logger, State, PLUGIN_NAME)
     print('\n'.join(state.products_seen))

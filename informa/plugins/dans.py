@@ -33,6 +33,7 @@ class Product(JsonSchemaMixin):
     name: str
     target: int
 
+
 @dataclass
 class History(JsonSchemaMixin):
     product: Product
@@ -49,13 +50,16 @@ class History(JsonSchemaMixin):
             'ts': self.ts,
         }
 
+
 @dataclass
 class State(JsonSchemaMixin):
     last_run: datetime.date | None = None
     history: list[History] = field(default_factory=list)
 
+
 class FailedProductQuery(Exception):
     pass
+
 
 class ProductNeverAlerted(Exception):
     pass
@@ -105,7 +109,7 @@ def main(state: State, config: Config):
 
 
 def get_last_alert(product: Product, history: list[History]) -> tuple[History, int]:
-    'Lookup most recent alert for this product'
+    "Lookup most recent alert for this product"
     for i, history_item in enumerate(reversed(history)):
         if history_item.product == product and history_item.alerted:
             return history_item, i
@@ -113,7 +117,7 @@ def get_last_alert(product: Product, history: list[History]) -> tuple[History, i
 
 
 def add_to_history(history: list[History], new_history: History):
-    'Add query result to product history'
+    "Add query result to product history"
     # Remove history over 13 months old
     for i, history_item in enumerate(history):
         if history_item.ts > now_aest() + datetime.timedelta(days=400):
@@ -123,7 +127,7 @@ def add_to_history(history: list[History], new_history: History):
 
 
 def query_product(sess, product: Product) -> decimal.Decimal:
-    '''
+    """
     Query Dan Murphy's API for a product's current pricing
 
     Params:
@@ -131,7 +135,7 @@ def query_product(sess, product: Product) -> decimal.Decimal:
         product:  Product to query for
     Returns:
         Return the current price
-    '''
+    """
     try:
         # Fetch single product from Dan's API
         resp = sess.get(f'https://api.danmurphys.com.au/apis/ui/Product/{product.id}', timeout=5)
@@ -155,7 +159,7 @@ def query_product(sess, product: Product) -> decimal.Decimal:
 
 
 def send_alert(product: Product, current_price: decimal.Decimal):
-    'Send alert email via Mailgun'
+    "Send alert email via Mailgun"
     logger.info('Sending email for %s @ %s', product.name, current_price)
 
     mailgun.send(
@@ -166,25 +170,27 @@ def send_alert(product: Product, current_price: decimal.Decimal):
             'product': product.name,
             'price': current_price,
             'url': f'https://www.danmurphys.com.au/product/DM_{product.id}',
-        }
+        },
     )
 
 
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
-    'Dan Murphy\'s product tracker'
+    "Dan Murphy's product tracker"
+
 
 @cli.command
 def last_run():
-    'When was the last run?'
+    "When was the last run?"
     state = load_state(logger, State, PLUGIN_NAME)
     print(f'Last run: {state.last_run}')
 
+
 @cli.command
 def stats():
-    '''
+    """
     Show product stats
-    '''
+    """
     state = cast(State, load_state(logger, State, PLUGIN_NAME))
 
     product_history = [h.flatten() for h in state.history]

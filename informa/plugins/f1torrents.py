@@ -47,11 +47,13 @@ class Download(JsonSchemaMixin):
     magnet: str
     added_to_rtorrent: bool = False
 
+
 @dataclass
 class State(JsonSchemaMixin):
     last_run: datetime.date | None = field(default=now_aest())
     latest_race: str = field(default='')
     races: dict[str, Download] = field(default_factory=dict)
+
 
 class FailedFetchingTorrents(Exception):
     pass
@@ -61,6 +63,7 @@ class FailedFetchingTorrents(Exception):
 class Race(JsonSchemaMixin):
     title: str
     start: datetime.datetime
+
 
 @dataclass
 class Config(ConfigBase):
@@ -92,9 +95,9 @@ def run():
 
 
 def main(state: State, config: Config):
-    '''
+    """
     Check for new F1 torrents and add to rtorrent
-    '''
+    """
     state.last_run = now_aest()
 
     if check_torrentgalaxy(config.current_season, state):
@@ -104,9 +107,9 @@ def main(state: State, config: Config):
 
 @app.task('every 5 minute')
 def set_torrent_file_priorities():
-    '''
+    """
     Set priority high on the 02.Race.Session or 02.Qualifying.Session torrent parts
-    '''
+    """
     rt = RTorrent(RTORRENT_HOST, 5000)
     try:
         torrents = rt.get_torrents()
@@ -147,11 +150,10 @@ def add_torrents():
 
 
 def add_magnet_to_rtorrent(races: dict[str, Download]):
-    '''
+    """
     Add magnets directly to rtorrent via RPC
-    '''
+    """
     for key, race_data in races.items():
-
         if not race_data.added_to_rtorrent:
             try:
                 rt = RTorrent(RTORRENT_HOST, 5000)
@@ -179,7 +181,7 @@ def add_magnet_to_rtorrent(races: dict[str, Download]):
                 TEMPLATE_NAME,
                 {
                     'filename': filename,
-                }
+                },
             )
 
 
@@ -300,12 +302,7 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
         self.__transport.close()
 
     def __request(self, methodname, params):
-        request = xmlrpc.client.dumps(
-            params,
-            methodname,
-            encoding=self.__encoding,
-            allow_none=self.__allow_none
-        )
+        request = xmlrpc.client.dumps(params, methodname, encoding=self.__encoding, allow_none=self.__allow_none)
 
         response = self.__transport.request(
             self.__host,
@@ -327,10 +324,10 @@ class SCGIServerProxy(xmlrpc.client.ServerProxy):
         return xmlrpc.client._Method(self.__request, name)  # noqa: SLF001
 
     def __call__(self, attr):
-        '''
+        """
         A workaround to get special attributes on the ServerProxy
         without interfering with the magic __getattr__
-        '''
+        """
         if attr == 'close':
             return self.__close
         if attr == 'transport':
@@ -343,7 +340,6 @@ class RTorrent:
     def __init__(self, host, port):
         self.server = SCGIServerProxy(f'scgi://{host}:{port}/')
 
-
     def get_torrents(self, tag_filter=None):
         try:
             downloads = self.server.d.multicall2(
@@ -352,7 +348,7 @@ class RTorrent:
                 'd.hash=',
                 'd.name=',
                 'd.completed_bytes=',
-                'd.custom1='
+                'd.custom1=',
             )
             if downloads is None:
                 raise RtorrentError('get_torrents: Failed to load from rtorrent SCGI')
@@ -409,14 +405,13 @@ class RTorrent:
 
         return data
 
-
     def add_magnet(self, magnet_url):
-        '''
+        """
         Add a magnet URL
 
         Params:
             magnet_url (str):   duh
-        '''
+        """
         try:
             self.server.load.start_verbose('', magnet_url)
 
@@ -425,15 +420,14 @@ class RTorrent:
         except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'add_magnet: Failed to add magnet: {e}') from e
 
-
     def set_tag(self, hash_id, tag_name):
-        '''
+        """
         Set tag in custom1 field on a torrent
 
         Params:
             hash_id (str):      download hash_id
             tag_name (str):     tag text
-        '''
+        """
         try:
             self.server.d.custom1.set(hash_id, tag_name)
 
@@ -442,16 +436,15 @@ class RTorrent:
         except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'set_tag: Failed to load from rtorrent SCGI: {e}') from e
 
-
     def set_file_priority(self, hash_id, file_index, priority):
-        '''
+        """
         Set priority of a file in a torrent
 
         Params:
             hash_id (str):     download hash_id
             file_index (int):  position in download.files[] from get_torrents()
             priority (int):    0: skip, 1: normal, 2: high
-        '''
+        """
         try:
             self.server.f.priority.set(f'{hash_id}:f{file_index}', priority)
 
@@ -460,9 +453,8 @@ class RTorrent:
         except (OSError, xmlrpc.client.Fault) as e:
             raise RtorrentError(f'set_file_priority: Failed to load from rtorrent SCGI: {e}') from e
 
-
     def get_file_priority(self, hash_id, file_index):
-        '''
+        """
         Set priority of a file in a torrent
 
         Params:
@@ -470,7 +462,7 @@ class RTorrent:
             file_index (int):  position in download.files[] from get_torrents()
         Returns:
             priority (int):    0: skip, 1: normal, 2: high
-        '''
+        """
         try:
             return self.server.f.priority(f'{hash_id}:f{file_index}')
 
@@ -492,18 +484,19 @@ def format_size(size):
 
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
-    'F1 torrent downloader'
+    "F1 torrent downloader"
+
 
 @cli.command
 def last_run():
-    'When was the last run?'
+    "When was the last run?"
     state = load_state(logger, State, PLUGIN_NAME)
     print(f'Last run: {state.last_run}')
 
 
 @cli.command
 def found():
-    'What races have we found already?'
+    "What races have we found already?"
     state = load_state(logger, State, PLUGIN_NAME)
     for race in state.races.values():
         added = 'added  ' if race.added_to_rtorrent is True else 'pending'
@@ -512,7 +505,7 @@ def found():
 
 @cli.command
 def get_torrents():
-    'Load the current torrents from rtorrent'
+    "Load the current torrents from rtorrent"
     rt = RTorrent(RTORRENT_HOST, 5000)
     try:
         torrents = rt.get_torrents()
@@ -522,14 +515,13 @@ def get_torrents():
 
 
 @cli.command
-@click.option('--write', is_flag=True, default=False,
-              help='Write the calendar data to the plugin config file')
+@click.option('--write', is_flag=True, default=False, help='Write the calendar data to the plugin config file')
 def calendar(write: bool):
-    'Fetch F1 calendar for the current configured year, and write to config'
+    "Fetch F1 calendar for the current configured year, and write to config"
     config = load_config(Config, PLUGIN_NAME)
 
     def fetch_f1_calendar() -> dict[str, datetime.datetime]:
-        'Fetch current F1 calendar'
+        "Fetch current F1 calendar"
         gc = GoogleCalendar(
             credentials_path='gcp_oauth_secret.json',
             authentication_flow_host='home.mafro.net',

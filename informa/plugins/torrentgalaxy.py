@@ -24,6 +24,7 @@ class State(JsonSchemaMixin):
     last_run: datetime.date | None = None
     last_seen: dict[int, str] = field(default_factory=dict)
 
+
 @dataclass
 class Match:
     title: str
@@ -84,9 +85,7 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
                 # Pattern match terms
                 match = re.search(pat, entry['title'])
                 if match:
-                    matches.append(
-                        Match(entry['title'], entry['comments'], entry['links'][0]['href'])
-                    )
+                    matches.append(Match(entry['title'], entry['comments'], entry['links'][0]['href']))
 
             if matches:
                 # Notify all matches per search term
@@ -97,7 +96,7 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
                     {
                         'term': searchterm,
                         'matches': matches,
-                    }
+                    },
                 )
                 logger.debug('Sent email for %s', searchterm)
 
@@ -111,10 +110,11 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
 
 @click.group(name=PLUGIN_NAME[16:])
 def cli():
-    'Torrent Galaxy user tracker'
+    "Torrent Galaxy user tracker"
+
 
 @cli.command
 def last_run():
-    'When was the last run?'
+    "When was the last run?"
     state = load_state(logger, State, PLUGIN_NAME)
     print(f'Last run: {state.last_run}')
