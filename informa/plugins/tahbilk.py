@@ -5,7 +5,8 @@ import bs4
 import click
 import requests
 
-from informa.lib import PluginAdapter, StateBase, app, load_run_persist, load_state, mailgun
+from informa.lib import PluginAdapter, StateBase, app, mailgun
+from informa.lib.plugin import load_run_persist, load_state
 
 logger = PluginAdapter(logging.getLogger('informa'))
 

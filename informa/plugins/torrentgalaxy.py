@@ -8,7 +8,8 @@ import requests
 from fake_useragent import UserAgent
 
 from informa import exceptions
-from informa.lib import ConfigBase, PluginAdapter, StateBase, app, load_run_persist, mailgun
+from informa.lib import ConfigBase, PluginAdapter, StateBase, app, mailgun
+from informa.lib.plugin import load_run_persist
 
 logger = PluginAdapter(logging.getLogger('informa'))
 

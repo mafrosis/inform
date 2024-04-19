@@ -6,7 +6,7 @@ import os
 import click
 
 from informa.exceptions import PluginNotFound
-from informa.lib import load_run_persist
+from informa.lib.plugin import load_run_persist
 from informa.main import init_plugins
 from informa.main import start as start_app
 
