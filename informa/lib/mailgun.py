@@ -5,7 +5,7 @@ from typing import Any
 import requests
 from jinja2 import Environment, FileSystemLoader
 
-from informa.exceptions import MailgunKeyMissing, MailgunSendFailed
+from informa.exceptions import MailgunKeyMissing, MailgunSendFailed, MailgunTemplateFail
 from informa.lib import PluginAdapter
 
 
@@ -55,6 +55,9 @@ def _send(subject: str, template: str | None = None, content: dict[str, Any] | N
     env = Environment(loader=FileSystemLoader('templates'), autoescape=True)
 
     if template:
+        if not content:
+            raise MailgunTemplateFail
+
         if not template.endswith('.tmpl'):
             template += '.tmpl'
 
