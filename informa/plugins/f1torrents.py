@@ -93,9 +93,12 @@ def main(state: State, config: Config):
     """
     Check for new F1 torrents and add to rtorrent
     """
-    if check_torrentgalaxy(config.current_season, state):
-        # if torrents found, try to add immediately
-        add_magnet_to_rtorrent(state.races)
+    try:
+        if check_torrentgalaxy(config.current_season, state):
+            # if torrents found, try to add immediately
+            add_magnet_to_rtorrent(state.races)
+    except FailedFetchingTorrents as e:
+        logger.error(e)
 
 
 @app.task('every 5 minute')
