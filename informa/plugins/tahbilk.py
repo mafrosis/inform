@@ -10,7 +10,6 @@ from informa.lib import PluginAdapter, StateBase, app, load_run_persist, load_st
 logger = PluginAdapter(logging.getLogger('informa'))
 
 
-PLUGIN_NAME = __name__
 TEMPLATE_NAME = 'tahbilk.tmpl'
 
 
@@ -21,7 +20,7 @@ class State(StateBase):
 
 @app.task('every 12 hours', name=__name__)
 def run():
-    load_run_persist(logger, State, PLUGIN_NAME, main)
+    load_run_persist(logger, State, main)
 
 
 def main(state: State):
@@ -60,7 +59,7 @@ def query_cellar_releases(products_seen: set[str]):
         products_seen.add(title)
 
 
-@click.group(name=PLUGIN_NAME[16:])
+@click.group(name=__name__[16:])
 def cli():
     "Tahbilk CLI"
 
@@ -68,5 +67,5 @@ def cli():
 @cli.command
 def seen():
     "What products have been seen already?"
-    state = load_state(logger, State, PLUGIN_NAME)
+    state = load_state(logger, State)
     print('\n'.join(state.products_seen))

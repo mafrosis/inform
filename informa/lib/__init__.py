@@ -47,8 +47,20 @@ class StateBase(DataClassJsonMixin):
     last_run: datetime.date | None = None
 
 
+def pass_plugin_name(func):
+    "Lookup the name of the calling module, and pass as the first parameter to `func`"
+
+    def inner(*args, **kwargs):
+        frame = inspect.stack()[1]
+        plugin_name = inspect.getmodule(frame[0]).__name__
+        return func(plugin_name, *args, **kwargs)
+
+    return inner
+
+
+@pass_plugin_name
 def load_run_persist(
-    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], plugin_name: str, main_func: Callable
+    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], main_func: Callable
 ):
     """
     Load plugin state, run plugin main function via callback, persist state to disk.
@@ -57,14 +69,14 @@ def load_run_persist(
     `ConfigBase`, and if so, loads a plugins config into an instance of this `ConfigBase` class.
 
     Params:
+        plugin_name:  Plugin module name, supplied by the @pass_plugin_name decorator
         logger:       Logger for the calling plugin
         state_cls:    Plugin state dataclass which is persisted between runs
-        plugin_name:  Plugin unique name
         main_func:    Callback function to trigger plugin logic
     """
     try:
         # Reload config each time plugin runs
-        state = load_state(logger, state_cls, plugin_name)
+        state = _load_state(plugin_name, logger, state_cls)
 
         plugin_config_class: type[ConfigBase] | None = None
 
@@ -77,7 +89,7 @@ def load_run_persist(
 
         if plugin_config_class:
             # Reload config each time plugin runs
-            config = load_config(plugin_config_class, plugin_name)
+            config = _load_config(plugin_name, plugin_config_class)
 
             # Call plugin with config
             main_func(state, config)
@@ -88,7 +100,7 @@ def load_run_persist(
         state.last_run = now_aest()
 
         # Write plugin state back to disk
-        write_state(state, plugin_name)
+        _write_state(plugin_name, state)
         logger.debug('State persisted')
 
     except AppError as e:
@@ -104,17 +116,55 @@ def now_aest() -> datetime.datetime:
     return datetime.datetime.now(ZoneInfo('Australia/Melbourne'))
 
 
-def load_config(config_cls: type[ConfigBase], plugin_name: str) -> DataClassJsonMixin | None:
-    return cast(ConfigBase, load_file('config', config_cls, plugin_name))
+@pass_plugin_name
+def load_config(
+    plugin_name: str,
+    config_cls: type[ConfigBase],
+) -> DataClassJsonMixin | None:
+    """
+    Load plugin config
+
+    Params:
+        plugin_name:  Plugin module name, supplied by the @pass_plugin_name decorator
+        cls:          Plugin's config class type
+    """
+    return _load_config(plugin_name, config_cls)
 
 
+def _load_config(
+    plugin_name: str,
+    config_cls: type[ConfigBase],
+) -> DataClassJsonMixin | None:
+    """
+    Load plugin config
+    Doesn't use @pass_plugin_name magic
+    """
+    return cast(ConfigBase, _load_file(plugin_name, 'config', config_cls))
+
+
+@pass_plugin_name
 def load_state(
-    logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], plugin_name: str
+    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase]
 ) -> StateBase:
     """
-    Load or initialise a plugin's state
+    Load or initialise plugin state
+
+    Params:
+        plugin_name:  Plugin module name, provided by the @pass_plugin_name decorator
+        directory:    Directory path; either "config" or "state"
+        cls:          Plugin's state class type
     """
-    state = load_file('state', state_cls, plugin_name)
+    return _load_state(plugin_name, logger, state_cls)
+
+
+def _load_state(
+    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase]
+) -> StateBase:
+    """
+    Load or initialise plugin state
+    Doesn't use @pass_plugin_name magic
+    """
+    state = _load_file(plugin_name, 'state', state_cls)
     if not state:
         logger.debug('Empty state initialised for %s', plugin_name)
         state = state_cls()
@@ -124,14 +174,14 @@ def load_state(
     return cast(StateBase, state)
 
 
-def load_file(directory: str, cls: type[DataClassJsonMixin], plugin_name: str) -> DataClassJsonMixin | None:
+def _load_file(plugin_name: str, directory: str, cls: type[DataClassJsonMixin]) -> DataClassJsonMixin | None:
     """
     Utility function to load plugin config/state from a file
 
     Params:
+        plugin_name:  Plugin's name
         directory:    Directory path; either "config" or "state"
         cls:          Plugin's state/config class type
-        plugin_name:  Plugin's name
     """
     try:
         with open(f'{directory}/{plugin_name}.yaml', encoding='utf8') as f:
@@ -143,13 +193,22 @@ def load_file(directory: str, cls: type[DataClassJsonMixin], plugin_name: str) -
         return None
 
 
-def write_state(state_obj: StateBase, plugin_name: str):
+@pass_plugin_name
+def write_state(plugin_name: str, state_obj: StateBase):
     """
     Utility function to write state to a file
 
     Params:
-        cls:          Plugin's state object
-        plugin_name:  Plugin's name
+        plugin_name:  Plugin module name, provided by the @pass_plugin_name decorator
+        state_obj:    Plugin's state object
+    """
+    _write_state(plugin_name, state_obj)
+
+
+def _write_state(plugin_name: str, state_obj: StateBase):
+    """
+    Utility function to write state to a file
+    Doesn't use @pass_plugin_name magic
     """
     if not os.path.exists('state'):
         os.mkdir('state')

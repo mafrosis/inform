@@ -24,7 +24,6 @@ from informa.lib import (
 logger = PluginAdapter(logging.getLogger('informa'))
 
 
-PLUGIN_NAME = __name__
 TEMPLATE_NAME = 'dans.tmpl'
 
 
@@ -63,7 +62,7 @@ class ProductNeverAlerted(Exception):
 
 @app.task('every 12 hours', name=__name__)
 def run():
-    load_run_persist(logger, State, PLUGIN_NAME, main)
+    load_run_persist(logger, State, main)
 
 
 def main(state: State, config: Config):
@@ -166,13 +165,13 @@ def send_alert(product: Product, current_price: decimal.Decimal):
     )
 
 
-@click.group(name=PLUGIN_NAME[16:])
+@click.group(name=__name__[16:])
 def cli():
     "Dan Murphy's product tracker"
 
 
 def get_history() -> pd.DataFrame:
-    state = cast(State, load_state(logger, State, __name__))
+    state = cast(State, load_state(logger, State))
     df = pd.DataFrame([
         {
             'id': h.product.id,

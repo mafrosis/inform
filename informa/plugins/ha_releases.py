@@ -10,7 +10,6 @@ from informa.lib import PluginAdapter, StateBase, app, load_run_persist, load_st
 logger = PluginAdapter(logging.getLogger('informa'))
 
 
-PLUGIN_NAME = __name__
 TEMPLATE_NAME = 'ha.tmpl'
 
 
@@ -21,7 +20,7 @@ class State(StateBase):
 
 @app.task('every 12 hours', name=__name__)
 def run():
-    load_run_persist(logger, State, PLUGIN_NAME, main)
+    load_run_persist(logger, State, main)
 
 
 def main(state: State):
@@ -71,7 +70,7 @@ def fetch_ha_releases(last_release_seen: str | None):
     return last_release_seen
 
 
-@click.group(name=PLUGIN_NAME[16:].replace('_', '-'))
+@click.group(name=__name__[16:].replace('_', '-'))
 def cli():
     "Home Assistant release tracker"
 
@@ -79,5 +78,5 @@ def cli():
 @cli.command
 def current():
     "What is the current HA version?"
-    state = load_state(logger, State, PLUGIN_NAME)
+    state = load_state(logger, State)
     click.echo(state.last_release_seen or 'Never queried')

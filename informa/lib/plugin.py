@@ -6,7 +6,7 @@ from types import ModuleType
 import arrow
 import click
 
-from informa.lib import ConfigBase, PluginAdapter, StateBase, load_state
+from informa.lib import ConfigBase, PluginAdapter, StateBase, _load_state
 
 
 @dataclass
@@ -50,6 +50,6 @@ def setup_plugin_cli(plugin: ModuleType):
 @click_pass_plugin
 def plugin_last_run(plugin: Plugin):
     "When was the last run?"
-    state = load_state(plugin.logger, plugin.state_cls, plugin.name)
+    state = _load_state(plugin.name, plugin.logger, plugin.state_cls)
     last_run = arrow.get(state.last_run).humanize() if state.last_run else 'Never'
     print(f'Last run: {last_run}')

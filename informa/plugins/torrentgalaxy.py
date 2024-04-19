@@ -13,7 +13,6 @@ from informa.lib import ConfigBase, PluginAdapter, StateBase, app, load_run_pers
 logger = PluginAdapter(logging.getLogger('informa'))
 
 
-PLUGIN_NAME = __name__
 TEMPLATE_NAME = 'torrentgalaxy.tmpl'
 
 
@@ -37,7 +36,7 @@ class Config(ConfigBase):
 
 @app.task('every 12 hours', name=__name__)
 def run():
-    load_run_persist(logger, State, PLUGIN_NAME, main)
+    load_run_persist(logger, State, main)
 
 
 def main(state: State, config: Config):
@@ -103,6 +102,6 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
         last_seen[uid] = feed['entries'][0]['id']
 
 
-@click.group(name=PLUGIN_NAME[16:])
+@click.group(name=__name__[16:])
 def cli():
     "Torrent Galaxy user tracker"
