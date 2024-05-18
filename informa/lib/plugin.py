@@ -31,6 +31,7 @@ class Plugin:
     logger: logging.Logger
     state_cls: type
     config_cls: type | None
+    main: Callable
 
 
 click_pass_plugin = click.make_pass_decorator(Plugin)
@@ -55,20 +56,27 @@ def setup_plugin_cli(plugin: ModuleType):
         plugin_logger = get_plugin_logger()
 
         plugin.cli.context_settings = {
-            'obj': Plugin(plugin.__name__, plugin_logger, plugin_state_cls, plugin_config_cls)
+            'obj': Plugin(plugin.__name__, plugin_logger, plugin_state_cls, plugin_config_cls, plugin.main)
         }
         plugin.cli.add_command(plugin_last_run)
+        plugin.cli.add_command(plugin_run_now)
 
 
 @pass_plugin_name
 def load_run_persist(
     plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], main_func: Callable
 ):
+    _load_run_persist(plugin_name, logger, state_cls, main_func)
+
+
+def _load_run_persist(
+    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], main_func: Callable
+):
     """
     Load plugin state, run plugin main function via callback, persist state to disk.
 
     Dynamically inspects the parameter `main_func` to determine if it has a parameter derived from
-    `ConfigBase`, and if so, loads a plugins config into an instance of this `ConfigBase` class.
+    `ConfigBase`, and if so, loads a plugin's config into an instance of this `ConfigBase` class.
 
     Params:
         plugin_name:  Plugin module name, supplied by the @pass_plugin_name decorator
@@ -175,3 +183,10 @@ def plugin_last_run(plugin: Plugin):
     state = _load_state(plugin.name, plugin.logger, plugin.state_cls)
     last_run = arrow.get(state.last_run).humanize() if state.last_run else 'Never'
     print(f'Last run: {last_run}')
+
+
+@click.command('run')
+@click_pass_plugin
+def plugin_run_now(plugin: Plugin):
+    "Run the plugin now in the foreground"
+    _load_run_persist(plugin.name, plugin.logger, plugin.state_cls, plugin.main)

@@ -5,8 +5,6 @@ import os
 
 import click
 
-from informa.exceptions import PluginNotFound
-from informa.lib.plugin import load_run_persist
 from informa.main import init_plugins
 from informa.main import start as start_app
 
@@ -56,32 +54,3 @@ def list_plugins():
     """
     for plug in PLUGINS:
         print(plug)
-
-
-def get_plugin(command: str):
-    "Attempt to convert a string into a valid plugin name"
-    # Cleanup the passed string
-    command = command.lower().replace('_', '-')
-
-    if command in PLUGINS:
-        # Found plugin by name
-        return PLUGINS[command]
-
-    matches = [p for p in PLUGINS if p.startswith(command)]
-    if len(matches) == 1:
-        # Only one plugin exists with passed prefix, so assume a match
-        return PLUGINS[matches[0]]
-
-    raise PluginNotFound
-
-
-@cli.command
-@click.argument('plugin')
-def call(plugin: str):
-    """
-    Run a single plugin synchronously
-
-    PLUGIN - Name of the plugin to run synchronously on the CLI
-    """
-    plug = get_plugin(plugin)
-    load_run_persist(plug.logger, plug.State, plug.PLUGIN_NAME, plug.main)
