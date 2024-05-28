@@ -150,6 +150,8 @@ def add_magnet_to_rtorrent(races: dict[str, Download]) -> bool:
     """
     Add magnets directly to rtorrent via RPC
     """
+    torrent_added = False
+
     for key, race_data in races.items():
         if not race_data.added_to_rtorrent:
             try:
@@ -180,9 +182,9 @@ def add_magnet_to_rtorrent(races: dict[str, Download]) -> bool:
                     'filename': filename,
                 },
             )
-            return True
+            torrent_added = True
 
-    return False
+    return torrent_added
 
 
 def check_torrentgalaxy(current_season: int, state: State) -> bool:
