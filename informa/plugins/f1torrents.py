@@ -222,12 +222,19 @@ def check_torrentgalaxy(current_season: int, state: State) -> bool:
                 continue
 
             # Race / Qualifying / Sprint etc
-            session_type = title.split('.')[-3]
+            if 'Sprint' in title:
+                session_type = 'sq' if 'Qualifying' in title else 'sr'
+            elif 'Qualifying' in title:
+                session_type = 'qu'
+            elif 'Race' in title:
+                session_type = 'ra'
+            else:
+                session_type = 'rv'
 
             logger.debug('Found: %s (%s)', title, session_type)
 
             # Create a different key for each session type (eg. 2023x04ra)
-            key = f'{title[10:17]}{session_type[0:2].lower()}'
+            key = f'{title[10:17]}{session_type}'
 
             if key not in state.races:
                 state.races[key] = Download(key=key, title=title, magnet=magnet)
