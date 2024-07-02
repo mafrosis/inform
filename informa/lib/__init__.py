@@ -32,7 +32,7 @@ class PluginAdapter(logging.LoggerAdapter):
         return f'[{self.extra}] {msg}', kwargs
 
 
-class ConfigBase(DataClassJsonMixin, metaclass=abc.ABCMeta):
+class ConfigBase(DataClassJsonMixin, abc.ABC):
     "Base class from which plugin Config classes must inherit"
 
 
