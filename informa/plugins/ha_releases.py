@@ -19,14 +19,14 @@ class State(StateBase):
     last_release_seen: str | None = None
 
 
-@app.task('every 12 hours', name=__name__)
+@app.task('every 24 hours', name=__name__)
 def run():
     load_run_persist(logger, State, main)
 
 
 def main(state: State):
     ver = fetch_ha_releases(state.last_release_seen or None)
-    if isinstance(ver, str):
+    if ver:
         state.last_release_seen = ver
 
 
@@ -40,35 +40,19 @@ def fetch_ha_releases(last_release_seen: str | None):
 
     soup = bs4.BeautifulSoup(resp.text, 'html.parser')
 
-    # Iterate release news page
-    for release in soup.select('h1.gamma a'):
-        try:
-            # Parse release title (this is likely to break at some point)
-            version = release.text.split(':')[0]
-        except IndexError:
-            continue
+    try:
+        version = soup.select('.release-date')[0].text.strip()
+    except:  # noqa: E722 bare-except
+        mailgun.send(logger, 'New HA version parse failed!')
+        return False
 
-        # Abort when we reach the most recently seen release
-        if version == last_release_seen:
-            logger.debug('Stopping at %s', version)
-            break
+    logger.info('Found %s', version)
 
-        # Send an email for a more recent HA release
-        if version > (last_release_seen or '0'):
-            last_release_seen = version
-            logger.info('Found %s', last_release_seen)
+    # Notify when the version changes
+    if version != last_release_seen:
+        mailgun.send(logger, f'New HA release {version}', TEMPLATE_NAME, {'version': version})
 
-            mailgun.send(
-                logger,
-                f'New HA release {last_release_seen}',
-                TEMPLATE_NAME,
-                {
-                    'version': last_release_seen,
-                },
-            )
-            break
-
-    return last_release_seen
+    return version
 
 
 @click.group(name=__name__[16:].replace('_', '-'))
