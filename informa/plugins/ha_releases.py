@@ -41,6 +41,7 @@ def fetch_ha_releases(last_release_seen: str | None):
     soup = bs4.BeautifulSoup(resp.text, 'html.parser')
 
     try:
+        # Extract latest version
         version = soup.select('.release-date')[0].text.strip()
     except:  # noqa: E722 bare-except
         mailgun.send(logger, 'New HA version parse failed!')
@@ -48,9 +49,21 @@ def fetch_ha_releases(last_release_seen: str | None):
 
     logger.info('Found %s', version)
 
-    # Notify when the version changes
+    title = url = None
+
     if version != last_release_seen:
-        mailgun.send(logger, f'New HA release {version}', TEMPLATE_NAME, {'version': version})
+        # Extract the release notes URL
+        for article in soup.find_all('article'):
+            for link in article.find_all('a', href=True):
+                if version[0:-2] in link.text:
+                    title = link.text
+                    url = link['href']
+
+        # Notify
+        if title:
+            mailgun.send(logger, title, TEMPLATE_NAME, {'version': version, 'url': url, 'title': title})
+        else:
+            mailgun.send(logger, f'New HA release {version}')
 
     return version
 
