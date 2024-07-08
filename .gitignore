@@ -9,5 +9,6 @@ dist/
 venv
 config/*.yaml
 state
-gcp_oauth_secret.json
 token.pickle
+client_secret_*.apps.googleusercontent.com.json
+mafro-oauth-abad62e69e8d.json

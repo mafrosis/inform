@@ -13,6 +13,7 @@ services:
       - DEBUG
       - MAILGUN_KEY
       - MP3HOME=/music
+      - GSUITE_OAUTH_CREDS=/src/gcp_oauth_secret.json
       - TZ=Australia/Melbourne
     ports:
       - 3000:3000
@@ -23,6 +24,6 @@ services:
       - ./plugins.yaml:/src/plugins.yaml:ro
       - ./templates:/src/templates:ro
       - ./config:/src/config:ro
-      - ./gcp_oauth_secret.json:/src/gcp_oauth_secret.json:ro
+      - ./mafro-oauth-abad62e69e8d.json:/src/gcp_oauth_secret.json:ro
       - /home/mafro/music:/music:ro
       - informa-data:/src/state
