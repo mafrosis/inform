@@ -16,9 +16,9 @@ from informa.lib import (
     StateBase,
     app,
     mailgun,
-    now_aest,
 )
 from informa.lib.plugin import load_run_persist, load_state, write_state
+from informa.lib.utils import now_aest
 
 logger = PluginAdapter(logging.getLogger('informa'))
 

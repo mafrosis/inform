@@ -54,11 +54,6 @@ def pass_plugin_name(func):
     return inner
 
 
-def now_aest() -> datetime.datetime:
-    "Utility function to return now as TZ-aware datetime"
-    return datetime.datetime.now(ZoneInfo('Australia/Melbourne'))
-
-
 def _load_config(
     plugin_name: str,
     config_cls: type[ConfigBase],

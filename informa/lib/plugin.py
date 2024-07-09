@@ -18,9 +18,9 @@ from informa.lib import (
     _load_config,
     _load_state,
     _write_state,
-    now_aest,
     pass_plugin_name,
 )
+from informa.lib.utils import now_aest
 
 
 @dataclass
