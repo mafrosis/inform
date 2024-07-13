@@ -11,7 +11,6 @@ services:
       context: .
     environment:
       - DEBUG
-      - MAILGUN_KEY
       - MP3HOME=/music
       - GSUITE_OAUTH_CREDS=/src/gcp_oauth_secret.json
       - TZ=Australia/Melbourne
@@ -27,3 +26,5 @@ services:
       - ./mafro-oauth-abad62e69e8d.json:/src/gcp_oauth_secret.json:ro
       - /home/mafro/music:/music:ro
       - informa-data:/src/state
+    env_file:
+      - .secrets
