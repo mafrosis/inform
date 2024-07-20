@@ -205,9 +205,12 @@ def stats():
 
     # Smash into single dataframe
     df = pd.concat([price_range, latest_price, query_range], axis=1)
-    df.columns = ['Count', 'Min', 'Max', 'Median', 'Target', 'Latest', 'First', 'Most Recent']
-    df['First'] = df['First'].dt.strftime('%d-%m-%Y')
-    df['Most Recent'] = df['Most Recent'].dt.strftime('%d-%m-%Y')
+    df.columns = ['Count', 'Lowest', 'Highest', 'Median', 'Target', 'Latest', 'Latest Fetch', 'First Fetch']
+
+    # Date formatting
+    for col in ('Latest Fetch', 'First Fetch'):
+        df[col] = df[col].dt.strftime('%d-%m-%Y')
+
     print(df)
 
 
