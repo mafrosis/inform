@@ -1,0 +1,6 @@
+[submodule "gmsa"]
+	path = gmsa
+	url = git@github.com:mafrosis/gmsa.git
+[submodule "transto"]
+	path = transto
+	url = git@github.com:mafrosis/transto.git

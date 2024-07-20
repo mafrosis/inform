@@ -20,6 +20,11 @@ WORKDIR /src
 # Copy in the built wheels
 COPY --from=builder /dist /dist
 
+COPY transto /src/transto
+RUN pip install -e /src/transto
+COPY gmsa /src/gmsa
+RUN pip install -e /src/gmsa
+
 # Install
 RUN python -m pip install --no-index --find-links=/dist --no-cache informa
 
