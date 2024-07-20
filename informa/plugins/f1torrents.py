@@ -1,6 +1,7 @@
 import datetime
 import logging
 import math
+import os
 import re
 import socket
 import xmlrpc.client
@@ -10,9 +11,11 @@ from urllib.parse import urlparse
 
 import click
 import feedparser
+import googleapiclient
 import requests
 from dataclasses_json import DataClassJsonMixin
 from gcsa.google_calendar import GoogleCalendar
+from google.oauth2.service_account import Credentials
 from rocketry.conds import cron
 
 from informa.lib import (
@@ -23,7 +26,7 @@ from informa.lib import (
     mailgun,
     pretty,
 )
-from informa.lib.plugin import load_config, load_run_persist, load_state, write_config, write_state
+from informa.lib.plugin import load_config, load_run_persist, load_state, write_state
 
 logger = PluginAdapter(logging.getLogger('informa'))
 
@@ -67,20 +70,39 @@ class Config(ConfigBase):
 
 @app.cond()
 def is_f1_weekend():
-    config = load_config(Config)
-
-    if config.calendar is None:
-        logger.error('No F1 calendar configured, use: informa plugin f1torrents calendar')
+    cal = fetch_f1_calendar()
+    if not cal:
         return False
 
     today = datetime.datetime.now(tz=datetime.UTC).date()
 
-    for race in config.calendar:
+    for race in [Race(k, v) for k, v in cal.items()]:
         if race.start.date() - datetime.timedelta(days=3) < today < race.start.date() + datetime.timedelta(days=3):
             return True
 
     logger.debug('Today not within F1 weekend range')
     return False
+
+
+def fetch_f1_calendar() -> dict[str, datetime.datetime]:
+    "Fetch current F1 calendar"
+    try:
+        gc = GoogleCalendar(
+            credentials=Credentials.from_service_account_file(os.environ.get('GSUITE_OAUTH_CREDS'))
+        )
+    except googleapiclient.errors.HttpError:
+        logger.error('Failed to authenticate to Google Calendar API')
+        return None
+
+    config = load_config(Config)
+
+    events = gc.get_events(
+        calendar_id='c_e615a5f4fc5d2ddb8ff9e902a50fcf0c26ffe628f149c11d13b4c51e123ce8a7@group.calendar.google.com',
+        time_min=datetime.date(config.current_season, 1, 1),
+        single_events=True,
+        order_by='startTime',
+    )
+    return {e.summary: e.start for e in events if e.summary.endswith(' - Race')}
 
 
 @app.task(cron('*/15 * * * *') & is_f1_weekend, name=__name__)
@@ -512,36 +534,12 @@ def get_torrents():
 
 
 @cli.command
-@click.option('--write', is_flag=True, default=False, help='Write the calendar data to the plugin config file')
-def calendar(write: bool):
+def calendar():
     "Fetch F1 calendar for the current configured year, and write to config"
-    config = load_config(Config)
+    cal = fetch_f1_calendar()
+    if not cal:
+        return False
 
-    def fetch_f1_calendar() -> dict[str, datetime.datetime]:
-        "Fetch current F1 calendar"
-        gc = GoogleCalendar(
-            credentials_path='gcp_oauth_secret.json',
-            authentication_flow_host='home.mafro.net',
-            authentication_flow_bind_addr='0.0.0.0',  # noqa: S104
-            authentication_flow_port=3002,
-            read_only=True,
-        )
-
-        config = load_config(Config)
-
-        events = gc.get_events(
-            calendar_id='kovat4knav5877j87e4o9f6m8m55dtbq@import.calendar.google.com',
-            time_min=datetime.date(config.current_season, 1, 1),
-            single_events=True,
-            order_by='startTime',
-        )
-        return {e.summary: e.start for e in events if e.summary.endswith(' - Race')}
-
-    config.calendar = [Race(k, v) for k, v in fetch_f1_calendar().items()]
-
-    if write:
-        write_config(config)
-
-    for r in config.calendar:
+    for r in [Race(k, v) for k, v in cal.items()]:
         print(f'{r.title}')
         print(f'   {r.start}')
