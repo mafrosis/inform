@@ -1,11 +1,13 @@
 import abc
 import datetime
+import decimal
 import inspect
 import logging
 import os
 from dataclasses import dataclass
 from typing import cast
 
+import orjson
 import yaml
 from dataclasses_json import DataClassJsonMixin
 from fastapi import FastAPI
@@ -74,6 +76,7 @@ def _load_state(
     Load or initialise plugin state
     """
     state = _load_file(plugin_name, 'state', state_cls)
+    _write_state(plugin_name, state)
     if not state:
         logger.debug('Empty state initialised for %s', plugin_name)
         state = state_cls()
@@ -93,11 +96,21 @@ def _load_file(plugin_name: str, directory: str, cls: type[DataClassJsonMixin]) 
         cls:          Plugin's state/config class type
     """
     try:
+        #with open(f'{directory}/{plugin_name}.json', encoding='utf8') as f:
+        #    data = orjson.loads(f.read())
+        #    if not data:
+        #        raise FileNotFoundError
+        #    data = cls.from_dict(data)
+        #    _write_state(plugin_name, data)
+        #    return data
+
         with open(f'{directory}/{plugin_name}.yaml', encoding='utf8') as f:
             data = yaml.load(f, Loader=yaml.Loader)  # noqa: S506
             if not data:
                 raise FileNotFoundError
-            return cls.from_dict(data)
+            data = cls.from_dict(data)
+            _write_state(plugin_name, data)
+            return data
     except FileNotFoundError:
         return None
 
@@ -109,5 +122,14 @@ def _write_state(plugin_name: str, state_obj: StateBase):
     if not os.path.exists('state'):
         os.mkdir('state')
 
-    with open(f'state/{plugin_name}.yaml', 'w', encoding='utf8') as f:
-        f.write(yaml.dump(state_obj.to_dict()))
+    def default(obj):
+        'Handler for types unknown to orjson'
+        if isinstance(obj, decimal.Decimal):
+            return str(obj)
+        raise TypeError
+
+    with open(f'state/{plugin_name}.json', 'w', encoding='utf8') as f:
+        f.write(orjson.dumps(state_obj, default=default).decode())
+
+    #with open(f'state/{plugin_name}.yaml', 'w', encoding='utf8') as f:
+    #    f.write(yaml.dump(state_obj.to_dict()))
