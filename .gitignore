@@ -12,3 +12,6 @@ state
 token.pickle
 client_secret_*.apps.googleusercontent.com.json
 mafro-oauth-abad62e69e8d.json
+
+plugins.yaml
+informa/plugins/c*8*.py
