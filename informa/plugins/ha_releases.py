@@ -15,6 +15,13 @@ TEMPLATE_NAME = 'ha.tmpl'
 
 
 @dataclass
+class NewVersion:
+    version: str
+    url: str
+    title: str | None
+
+
+@dataclass
 class State(StateBase):
     last_release_seen: str | None = None
 
@@ -25,18 +32,20 @@ def run():
 
 
 def main(state: State):
-    ver = fetch_ha_releases(state.last_release_seen or None)
-    if ver:
-        state.last_release_seen = ver
+    nv = fetch_ha_releases(state.last_release_seen or None)
+    if nv:
+        notify(nv)
+        state.last_release_seen = nv.version
 
 
-def fetch_ha_releases(last_release_seen: str | None):
+def fetch_ha_releases(last_release_seen: str | None) -> NewVersion | None:
+    "Fetch the HA release notes and parse the HTML"
     try:
         # Fetch release notes page
         resp = requests.get('https://www.home-assistant.io/blog/categories/release-notes/', timeout=5)
     except requests.RequestException as e:
         logger.error('Failed loading HA release notes: %s', e)
-        return False
+        return None
 
     soup = bs4.BeautifulSoup(resp.text, 'html.parser')
 
@@ -44,28 +53,27 @@ def fetch_ha_releases(last_release_seen: str | None):
         # Extract latest version
         version = soup.select('.release-date')[0].text.strip()
     except:  # noqa: E722 bare-except
+        logger.error('New HA version parse failed!')
         mailgun.send(logger, 'New HA version parse failed!')
-        return False
+        return None
 
     logger.info('Found %s', version)
-
-    title = url = None
 
     if version != last_release_seen:
         # Extract the release notes URL
         for article in soup.find_all('article'):
             for link in article.find_all('a', href=True):
                 if version[0:-2] in link.text:
-                    title = link.text
-                    url = link['href']
+                    return NewVersion(version, link['href'], link.text)
 
-        # Notify
-        if title:
-            mailgun.send(logger, title, TEMPLATE_NAME, {'version': version, 'url': url, 'title': title})
-        else:
-            mailgun.send(logger, f'New HA release {version}')
+    return None
 
-    return version
+
+def notify(nv: NewVersion):
+    if nv.title:
+        mailgun.send(logger, nv.title, TEMPLATE_NAME, {'version': nv.version, 'url': nv.url, 'title': nv.title})
+    else:
+        mailgun.send(logger, f'New HA release {nv.version}')
 
 
 @click.group(name=__name__[16:].replace('_', '-'))
