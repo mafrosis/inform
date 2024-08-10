@@ -20,15 +20,18 @@ services:
       - DEBUG
       - MP3HOME=/music
       - GSUITE_OAUTH_CREDS=/src/gcp_oauth_secret.json
+      - JORG_SSH_KEY=/jorg.pky
       - TZ=Australia/Melbourne
     extra_hosts:
       locke: 192.168.1.198
+      jorg: 192.168.1.104
     volumes:
       - ./plugins.yaml:/src/plugins.yaml:ro
       - ./templates:/src/templates:ro
       - ./config:/src/config:ro
       - ./mafro-oauth-abad62e69e8d.json:/src/gcp_oauth_secret.json:ro
       - /home/mafro/music:/music:ro
+      - /home/mafro/.ssh/jorg.pky:/jorg.pky
       - informa-data:/src/state
     env_file:
       - .secrets
