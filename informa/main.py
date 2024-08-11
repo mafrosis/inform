@@ -4,6 +4,7 @@ import functools
 import importlib
 import inspect
 import logging
+import sys
 from types import ModuleType
 
 import dataclasses_json
@@ -28,8 +29,12 @@ dataclasses_json.cfg.global_config.decoders[datetime.datetime] = datetime.dateti
 @functools.lru_cache
 def init_plugins() -> dict[str, ModuleType]:
     # Load active plugins from YAML config
-    with open('plugins.yaml', encoding='utf8') as f:
-        plugins = yaml.safe_load(f)['plugins']
+    try:
+        with open('plugins.yaml', encoding='utf8') as f:
+            plugins = yaml.safe_load(f)['plugins']
+    except FileNotFoundError:
+        logger.error('Mandatory file plugins.yaml is missing!')
+        sys.exit(44)
 
     modules = {}
 
