@@ -9,6 +9,8 @@ import click
 import yaml
 from dataclasses_json import DataClassJsonMixin
 from marshmallow.exceptions import ValidationError
+from paho.mqtt import client as mqtt
+from paho.mqtt.enums import CallbackAPIVersion
 
 from informa.exceptions import AppError
 from informa.lib import (
@@ -107,9 +109,11 @@ def _load_run_persist(
             # Call plugin without config
             main_func(state)
 
+        # Update common plugin state attributes
         state.last_run = now_aest()
 
-        # Write plugin state back to disk
+        # Persist plugin metadata
+        publish_plugin_run_to_mqtt(plugin_name, state)
         _write_state(plugin_name, state)
         logger.debug('State persisted')
 
@@ -119,6 +123,13 @@ def _load_run_persist(
         logger.error('State ValidationError: %s', str(e))
     except Exception:
         logger.exception('Unhandled exception')
+
+
+def publish_plugin_run_to_mqtt(plugin_name: str, state: StateBase):
+    "Write plugin's output to a MQTT topic"
+    client = mqtt.Client(CallbackAPIVersion.VERSION2)
+    client.connect('locke', 1883)
+    client.publish(f'informa/{plugin_name}/last_run', state.last_run.isoformat(), retain=True)
 
 
 @pass_plugin_name
