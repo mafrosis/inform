@@ -48,6 +48,7 @@ class StateBase(DataClassJsonMixin):
     'Base class from which plugin State classes must inherit'
 
     last_run: datetime.datetime | None = None
+    last_count: int | None = None
 
 
 def pass_plugin_name(func):

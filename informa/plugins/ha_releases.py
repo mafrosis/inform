@@ -31,15 +31,17 @@ def run():
     load_run_persist(logger, State, main)
 
 
-def main(state: State):
+def main(state: State) -> int:
     nv = fetch_ha_releases(state.last_release_seen or None)
     if nv:
         notify(nv)
         state.last_release_seen = nv.version
+        return 1
+    return 0
 
 
 def fetch_ha_releases(last_release_seen: str | None) -> NewVersion | None:
-    "Fetch the HA release notes and parse the HTML"
+    'Fetch the HA release notes and parse the HTML'
     try:
         # Fetch release notes page
         resp = requests.get('https://www.home-assistant.io/blog/categories/release-notes/', timeout=5)

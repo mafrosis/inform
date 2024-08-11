@@ -24,8 +24,9 @@ def run():
     load_run_persist(logger, State, main)
 
 
-def main(state: State):
+def main(state: State) -> int:
     query_cellar_releases(state.products_seen)
+    return len(state.products_seen)
 
 
 def query_cellar_releases(products_seen: set[str]):

@@ -68,11 +68,12 @@ def setup_plugin_cli(plugin: ModuleType):
 def load_run_persist(
     plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], main_func: Callable
 ):
-    _load_run_persist(plugin_name, logger, state_cls, main_func)
+    _load_run_persist(plugin_name, logger, state_cls, main_func, sync=False)
 
 
 def _load_run_persist(
-    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase], main_func: Callable
+    plugin_name: str, logger: logging.Logger | logging.LoggerAdapter, state_cls: type[StateBase],
+    main_func: Callable, sync: bool
 ):
     '''
     Load plugin state, run plugin main function via callback, persist state to disk.
@@ -85,6 +86,7 @@ def _load_run_persist(
         logger:       Logger for the calling plugin
         state_cls:    Plugin state dataclass which is persisted between runs
         main_func:    Callback function to trigger plugin logic
+        sync:         False if this function was invoked asynchronously from a Rocketry task
     '''
     try:
         # Reload config each time plugin runs
@@ -104,16 +106,26 @@ def _load_run_persist(
             config = _load_config(plugin_name, plugin_config_class)
 
             # Call plugin with config
-            main_func(state, config)
+            ret = main_func(state, config)
         else:
             # Call plugin without config
-            main_func(state)
+            ret = main_func(state)
+
+        # Handle misbehaving plugins (when main does not return a value)
+        if ret is None:
+            logger.debug('WARN: Plugin %s did not return a value', plugin_name)
+            ret = 1
 
         # Update common plugin state attributes
         state.last_run = now_aest()
+        state.last_count = ret
+
+        if sync is False:
+            # Publish state to MQTT when running async
+            publish_plugin_run_to_mqtt(plugin_name, state)
+            logger.debug('Published to informa/%s via MQTT', plugin_name)
 
         # Persist plugin metadata
-        publish_plugin_run_to_mqtt(plugin_name, state)
         _write_state(plugin_name, state)
         logger.debug('State persisted')
 
@@ -126,10 +138,11 @@ def _load_run_persist(
 
 
 def publish_plugin_run_to_mqtt(plugin_name: str, state: StateBase):
-    "Write plugin's output to a MQTT topic"
+    'Write plugin\'s output to a MQTT topic'
     client = mqtt.Client(CallbackAPIVersion.VERSION2)
     client.connect('locke', 1883)
     client.publish(f'informa/{plugin_name}/last_run', state.last_run.isoformat(), retain=True)
+    client.publish(f'informa/{plugin_name}/last_count', state.last_count, retain=True)
 
 
 @pass_plugin_name
@@ -200,4 +213,4 @@ def plugin_last_run(plugin: Plugin):
 @click_pass_plugin
 def plugin_run_now(plugin: Plugin):
     'Run the plugin now in the foreground'
-    _load_run_persist(plugin.name, plugin.logger, plugin.state_cls, plugin.main)
+    _load_run_persist(plugin.name, plugin.logger, plugin.state_cls, plugin.main, sync=True)

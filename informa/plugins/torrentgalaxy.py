@@ -40,15 +40,19 @@ def run():
     load_run_persist(logger, State, main)
 
 
-def main(state: State, config: Config):
+def main(state: State, config: Config) -> int:
     sess = requests.Session()
+
+    count = 0
 
     # Iterate configured torrentgalaxy user IDs
     for uid in config.users:
-        query_torrent(sess, config, uid, state.last_seen)
+        count += query_torrent(sess, config, uid, state.last_seen)
+
+    return count
 
 
-def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
+def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]) -> int:
     logger.debug('Querying user %s', uid)
 
     try:
@@ -101,6 +105,8 @@ def query_torrent(sess, config: Config, uid: int, last_seen: dict[int, str]):
         # Track the first entry seen, so we can skip these next time
         logger.debug('Marking last seen: %s', feed['entries'][0]['title'])
         last_seen[uid] = feed['entries'][0]['id']
+
+    return len(matches)
 
 
 @click.group(name=__name__[16:])

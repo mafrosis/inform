@@ -66,6 +66,7 @@ def main(state: State, config: Config):
     sess = requests.Session()
 
     history_item: History | None = None
+    count = 0
 
     # Iterate configured list of Dan's products
     for product in config.products:
@@ -85,12 +86,16 @@ def main(state: State, config: Config):
                     send_alert(product, current_price)
                     alerted = True
 
+                count += 1
+
             # Track query results
             result = History(product, current_price, ts=now_aest(), alerted=alerted)
             add_to_history(state.history, result)
 
         except FailedProductQuery as e:
             logger.error(e)
+
+    return count
 
 
 def get_last_alert(product: Product, history: list[History]) -> tuple[History, int]:

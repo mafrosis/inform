@@ -28,14 +28,15 @@ def run():
     load_run_persist(logger, State, main)
 
 
-def main(_):
+def main(_) -> int:
     msg = check_for_email()
 
     if msg and process_statement(msg):
         logger.info('Processed statement dated %s', msg.date)
         msg.mark_as_read()
-    else:
-        logger.info('No unread messages')
+        return 1
+    logger.info('No unread messages')
+    return 0
 
 
 def check_for_email():
