@@ -4,12 +4,11 @@ import functools
 import importlib
 import inspect
 import logging
-import sys
+import pathlib
 from types import ModuleType
 
 import dataclasses_json
 import uvicorn
-import yaml
 from fastapi import APIRouter
 
 from informa.api import app_fastapi
@@ -28,28 +27,25 @@ dataclasses_json.cfg.global_config.decoders[datetime.datetime] = datetime.dateti
 
 @functools.lru_cache
 def init_plugins() -> dict[str, ModuleType]:
-    # Load active plugins from YAML config
-    try:
-        with open('plugins.yaml', encoding='utf8') as f:
-            plugins = yaml.safe_load(f)['plugins']
-    except FileNotFoundError:
-        logger.error('Mandatory file plugins.yaml is missing!')
-        sys.exit(44)
-
     modules = {}
 
-    for plug in plugins:
+    plugin_path = pathlib.Path(inspect.getfile(inspect.currentframe())).parent / 'plugins'
+
+    for plug in plugin_path.glob('*.py'):
         # Convert dashes into underscores for python imports
-        module_name = plug.replace('-', '_')
+        module_name = plug.stem.replace('-', '_')
 
         try:
-            # Dynamic import to register rocketry tasks
-            modules[plug] = importlib.import_module(f'informa.plugins.{module_name}')
+            logger.debug('Loading informa.plugins.%s', module_name)
 
-            setup_plugin_cli(modules[plug])
+            # Dynamic import to register rocketry tasks
+            modules[plug.name] = importlib.import_module(f'informa.plugins.{module_name}')
+
+            # Setup CLI for all plugins
+            setup_plugin_cli(modules[plug.name])
 
         except ModuleNotFoundError as e:
-            logger.error('Plugin "%s" not loaded: %s', plug, e)
+            logger.error('Plugin "%s" not loaded: %s', plug.name, e)
             continue
 
     return modules
