@@ -13,6 +13,8 @@ sh = logging.StreamHandler()
 logger.addHandler(sh)
 sh.setFormatter(logging.Formatter('%(asctime)s - %(message)s'))
 logger.setLevel(logging.INFO)
+if os.environ.get('DEBUG'):
+    logger.setLevel(logging.DEBUG)
 
 
 @click.group()
