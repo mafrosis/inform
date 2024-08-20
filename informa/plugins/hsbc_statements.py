@@ -57,7 +57,7 @@ def check_for_email():
         return None
 
     # Fetch unread messages from HSBC/Statements
-    msgs = gmail.get_messages(labels=['Label_8304695994499497474', 'UNREAD'])
+    msgs = gmail.get_messages(query='label:hsbc-statements is:unread')
 
     # Filter for messages with Email Statement.pdf attachment
     msgs = [m for m in msgs if m.has_attachments() and m.attachments[0].filename == 'Email Statement.pdf']
