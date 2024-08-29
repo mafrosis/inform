@@ -65,8 +65,10 @@ def fetch_ha_releases(last_release_seen: str | None) -> NewVersion | None:
         # Extract the release notes URL
         for article in soup.find_all('article'):
             for link in article.find_all('a', href=True):
-                if version[0:-2] in link.text:
-                    return NewVersion(version, link['href'], link.text)
+                title = link.find('div', class_='title')
+
+                if title and version[0:-2] in title.text:
+                    return NewVersion(version, link['href'], title.text.strip())
 
     return None
 
