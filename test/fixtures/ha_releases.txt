@@ -1,0 +1,4376 @@
+
+
+
+
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Category: Release-Notes - Home Assistant</title>
+<meta name="author" content="Home Assistant">
+<meta name="description" content="Category: Release-Notes">
+<meta name="viewport" content="width=device-width">
+<link rel="canonical" href="https://www.home-assistant.io/blog/categories/release-notes/">
+<meta property="fb:app_id" content="338291289691179">
+<meta property="og:title" content="Category: Release-Notes">
+<meta property="og:site_name" content="Home Assistant">
+<meta property="og:url" content="https://www.home-assistant.io/blog/categories/release-notes/">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Category: Release-Notes">
+<meta property="og:image" content="https://www.home-assistant.io/images/default-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@home_assistant">
+<meta name="twitter:title" content="Category: Release-Notes">
+<meta name="twitter:description" content="Category: Release-Notes">
+<meta name="twitter:image" content="https://www.home-assistant.io/images/default-social.png">
+<link rel="me" href="https://fosstodon.org/@homeassistant">
+<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3/dist/style.min.css" rel="stylesheet" />
+<link href="/stylesheets/prism.css?8acb84bc0387c9548a63998fcfea0139" rel="stylesheet">
+<link href="/stylesheets/screen.css?37dad31e047662edc8e73197f690e058" media="screen, projection, print" rel="stylesheet">
+<link href="/atom.xml" rel="alternate" title="Home Assistant" type="application/atom+xml">
+<link rel="shortcut icon" href="/images/favicon.ico" />
+<link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;family=Instrument+Sans:ital,wdth,wght@0,99,400..700;1,99,400..700&amp;" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+</head>
+<body class="   blog-post blog-category">
+<header class="site-header ">
+<div class="grid-wrapper">
+<div class="grid">
+<div class="grid__item three-tenths lap-two-sixths palm-one-whole ha-title">
+<a href="/" class="site-title">
+<div class="logo"></div>
+</a>
+<a class="release-date" href="/blog/2024/08/07/release-20248/" title="Latest version 2024.8.3 released August 25, 2024">
+2024.8.3
+</a>
+</div>
+<div class="grid__item seven-tenths lap-four-sixths palm-one-whole">
+<nav>
+<input type="checkbox" id="toggle" />
+<label for="toggle" class="toggle" data-open="Main Menu" data-close="⨉"></label>
+<ul class="menu pull-right">
+<li><a href="/installation/">Getting started</a></li>
+<li>
+<a href="/docs/">Documentation <iconify-icon inline icon="mdi:chevron-down"></iconify-icon></a>
+<ul>
+<li><a href="/installation/"><iconify-icon inline icon="simple-icons:homeassistant"></iconify-icon> Installation</a></li>
+<li><a href="/docs/automation/"><iconify-icon inline icon="mdi:robot-happy"></iconify-icon> Automations</a></li>
+<li><a href="/dashboards/"><iconify-icon inline icon="mdi:gauge"></iconify-icon> Dashboards</a></li>
+<li><a href="/voice_control/"><iconify-icon inline icon="mdi:comment-processing-outline"></iconify-icon> Voice assistants</a></li>
+<li><a href="/docs/organizing/"><iconify-icon inline icon="mdi:view-grid"></iconify-icon> Device organization</a></li>
+<li><a href="/docs/energy/"><iconify-icon inline icon="mdi:solar-power-variant"></iconify-icon> Energy management</a></li>
+<li><a href="/docs/configuration/"><iconify-icon inline icon="mdi:cog"></iconify-icon> Advanced configuration</a></li>
+</ul>
+</li>
+<li><a href="/integrations/">Integrations</a></li>
+<li><a class="active" href="/blog/">Blog</a></li>
+<li><a href="/help/">Need help?</a></li>
+<li>
+<div class="docsearch" id="docsearch"></div>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</header>
+<div class="page-content">
+<div class="grid-wrapper">
+<div class="grid grid-center">
+<div class="grid__item two-thirds desk-wide-three-quarters lap-one-whole palm-one-whole">
+<article class="page">
+<header>
+<div class="breadcrumbs">
+<a href="/">Home</a>
+▸ <a href="/blog/">Blog</a>
+▸ <a href="/blog/categories/">Categories</a>
+▸
+</div>
+<h1 class="title indent">
+Release Notes
+</h1>
+</header>
+<div id="archive-list">
+<h2>2024 <a class="title-link" name="2024" href="#2024"></a>
+</h2>
+<a href="/blog/2024/08/07/release-20248/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-08/social.jpg)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.8: Beautiful badges!
+</div>
+<div class="subtitle">
+<time datetime="2024-08-07T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/07/03/release-20247/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-07/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.7: Time to resize your cards!
+</div>
+<div class="subtitle">
+<time datetime="2024-07-03T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/06/05/release-20246/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-06/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.6: Dipping our toes in the world of AI using LLMs 🤖
+</div>
+<div class="subtitle">
+<time datetime="2024-06-05T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/05/22/companion-app-for-ios-20245-assist/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-05-ios-assist/ios-og.jpg)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Companion app for iOS 2024.5: Let me Assist you 🍎
+</div>
+<div class="subtitle">
+<time datetime="2024-05-22T00:00:02+00:00" pubdate>
+<span class="month">May</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/05/01/release-20245/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-05/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.5: Just a little bit smaller
+</div>
+<div class="subtitle">
+<time datetime="2024-05-01T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/04/03/release-20244/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-04/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.4: Organize all the things!
+</div>
+<div class="subtitle">
+<time datetime="2024-04-03T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/03/06/release-20243/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-03/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.3: Drag 'n Drop it like it's hot! 🎉
+</div>
+<div class="subtitle">
+<time datetime="2024-03-06T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/02/07/release-20242/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-02/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.2: More voice, more icons, more integrations, more... everything!
+</div>
+<div class="subtitle">
+<time datetime="2024-02-07T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/01/29/companion-app-for-ios-20241-carplay/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-01-ios-carplay/ios-og.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Companion app for iOS 2024.1: CarPlay is here!
+</div>
+<div class="subtitle">
+<time datetime="2024-01-29T00:00:02+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2024/01/03/release-20241/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2024-01/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2024.1: Happy automating!
+</div>
+<div class="subtitle">
+<time datetime="2024-01-03T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2023 <a class="title-link" name="2023" href="#2023"></a>
+</h2>
+<a href="/blog/2023/12/27/companion-app-for-ios-202312-lets-go/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-12-ios-lets-go/ios-og.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Companion app for iOS 2023.12: Let’s go!
+</div>
+<div class="subtitle">
+<time datetime="2023-12-27T00:00:02+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/12/06/release-202312/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-12/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.12: Welcome home!
+</div>
+<div class="subtitle">
+<time datetime="2023-12-06T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/11/01/release-202311/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-11/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.11 To-do: Add release title
+</div>
+<div class="subtitle">
+<time datetime="2023-11-01T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/10/04/release-202310/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-10/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.10: New looks and more tile card features!
+</div>
+<div class="subtitle">
+<time datetime="2023-10-04T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/09/06/release-20239/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-09/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.9: New climate entity dialogs, lots of tile features, and template sensors from the UI!
+</div>
+<div class="subtitle">
+<time datetime="2023-09-06T00:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/08/02/release-20238/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-08/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.8: Translated services, events, and wildcards!
+</div>
+<div class="subtitle">
+<time datetime="2023-08-02T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/07/05/release-20237/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-07/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.7: Responding services
+</div>
+<div class="subtitle">
+<time datetime="2023-07-05T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/06/07/release-20236/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-06/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.6: Network storage, favorite light colors, new integrations dashboard
+</div>
+<div class="subtitle">
+<time datetime="2023-06-07T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/05/03/release-20235/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-05/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.5: Let's talk!
+</div>
+<div class="subtitle">
+<time datetime="2023-05-03T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/04/05/release-20234/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-04/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.4: Custom template macros, and many more new entity dialogs!
+</div>
+<div class="subtitle">
+<time datetime="2023-04-05T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/03/30/android-20233/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-03-30-android/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Android 2023.3: Multiple servers &amp; Windows 11 app
+</div>
+<div class="subtitle">
+<time datetime="2023-03-30T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">30</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/03/01/release-20233/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-03/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.3: Dialogs!
+</div>
+<div class="subtitle">
+<time datetime="2023-03-01T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/02/01/release-20232/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-02/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.2: How can I Assist?
+</div>
+<div class="subtitle">
+<time datetime="2023-02-01T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/01/20/android-auto/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-01-20-android-auto/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant coming for your car!
+</div>
+<div class="subtitle">
+<time datetime="2023-01-20T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2023/01/04/release-20231/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2023-01/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2023.1: Happy New Year of the voice!
+</div>
+<div class="subtitle">
+<time datetime="2023-01-04T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2022 <a class="title-link" name="2022" href="#2022"></a>
+</h2>
+<a href="/blog/2022/12/07/release-202212/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-12/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.12: It does matter!
+</div>
+<div class="subtitle">
+<time datetime="2022-12-07T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/11/02/release-202211/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-11/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.11: A heck of a release!
+</div>
+<div class="subtitle">
+<time datetime="2022-11-02T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/10/05/release-202210/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-10/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.10: All over the place
+</div>
+<div class="subtitle">
+<time datetime="2022-10-05T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/09/07/release-20229/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-09/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.9: Home Assistant Birthday Release!
+</div>
+<div class="subtitle">
+<time datetime="2022-09-07T02:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/08/03/release-20228/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-08/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.8: You can fix it!
+</div>
+<div class="subtitle">
+<time datetime="2022-08-03T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/07/06/release-20227/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-07/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.7: A stunning performance
+</div>
+<div class="subtitle">
+<time datetime="2022-07-06T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/06/01/release-20226/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-06/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.6: Gaining new insights!
+</div>
+<div class="subtitle">
+<time datetime="2022-06-01T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/05/16/home-assistant-os-release-8/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-05-16-os8/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant OS Release 8
+</div>
+<div class="subtitle">
+<time datetime="2022-05-16T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">16</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/05/08/ukraine-alarm/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-05-ukraine-alarm/integration.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.5.3: Ukraine Alarm integration, get alerted for attacks by air or artillery
+</div>
+<div class="subtitle">
+<time datetime="2022-05-08T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/05/04/release-20225/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-05/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.5: Streamlining settings
+</div>
+<div class="subtitle">
+<time datetime="2022-05-04T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/04/06/release-20224/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-04/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.4: Groups! Groups! Groups!
+</div>
+<div class="subtitle">
+<time datetime="2022-04-06T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/03/02/release-20223/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-03/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.3: Select and play media
+</div>
+<div class="subtitle">
+<time datetime="2022-03-02T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/02/11/android-february/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-02-android/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Android Companion 2022.2: Local Push Notifications!
+</div>
+<div class="subtitle">
+<time datetime="2022-02-11T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/02/02/release-20222/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-02/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2022.2: Let's start streamlining!
+</div>
+<div class="subtitle">
+<time datetime="2022-02-02T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2022/01/07/android-quest/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2022-01-android-quest/quest_sensors.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Oculus Quest Meet the Smart Home!
+</div>
+<div class="subtitle">
+<time datetime="2022-01-07T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2021 <a class="title-link" name="2021" href="#2021"></a>
+</h2>
+<a href="/blog/2021/12/20/android-december-2021-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-12-21-android-december-2021/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Android 2021.12: Wear OS Beta!
+</div>
+<div class="subtitle">
+<time datetime="2021-12-20T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/12/18/ios-multi-server/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-12-ios/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Multi-server support in iOS 2021.12
+</div>
+<div class="subtitle">
+<time datetime="2021-12-18T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/12/11/release-202112/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-12/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.12: New configuration menu, the button entity, and gorgeous area cards!
+</div>
+<div class="subtitle">
+<time datetime="2021-12-11T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/11/27/netdaemon-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-11-NetDaemon/NetDaemonLogo.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+New NetDaemon Release: Use C# to automate Home Assistant
+</div>
+<div class="subtitle">
+<time datetime="2021-11-27T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/11/03/release-202111/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-11/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.11: Icon picker, device links and entity categories
+</div>
+<div class="subtitle">
+<time datetime="2021-11-03T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/10/06/release-202110/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-10/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.10.0: Z-Wave S2 support, Tuya, secure ESPHome and 400 new icons
+</div>
+<div class="subtitle">
+<time datetime="2021-10-06T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/09/01/release-20219/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-09/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.9.0: More energy, USB discovery, template ❤️
+</div>
+<div class="subtitle">
+<time datetime="2021-09-01T00:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/08/04/release-20218/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-08/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.8.0: Feel the energy ⚡️
+</div>
+<div class="subtitle">
+<time datetime="2021-08-04T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/07/07/release-20217/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-07/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.7: A new entity, trigger IDs and script debugging
+</div>
+<div class="subtitle">
+<time datetime="2021-07-07T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/06/11/home-assistant-os-release-6/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-06-11-os6/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant OS Release 6
+</div>
+<div class="subtitle">
+<time datetime="2021-06-11T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/06/02/release-20216/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-06/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.6: A little bit of everything
+</div>
+<div class="subtitle">
+<time datetime="2021-06-02T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/05/10/ios-20215/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-05-10-ios-20215/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Easier notifications in iOS 2021.5
+</div>
+<div class="subtitle">
+<time datetime="2021-05-10T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/05/05/release-20215/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-05/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.5: Stability, performance, triggers, color modes!
+</div>
+<div class="subtitle">
+<time datetime="2021-05-05T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/04/08/android-april-2021-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-04-09-android-april-2021/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Android App April 2021 Release
+</div>
+<div class="subtitle">
+<time datetime="2021-04-08T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/04/07/release-20214/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-04/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.4: For our advanced users ❤️
+</div>
+<div class="subtitle">
+<time datetime="2021-04-07T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/03/04/android-2021-q1-releases/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-03-06-android-q1-releases/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Android App 2021 Q1 Releases
+</div>
+<div class="subtitle">
+<time datetime="2021-03-04T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/03/03/release-20213/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-03/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.3: My Oh My
+</div>
+<div class="subtitle">
+<time datetime="2021-03-03T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/02/03/release-20212/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-02/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.2: Z-Wave... JS!
+</div>
+<div class="subtitle">
+<time datetime="2021-02-03T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2021/01/06/release-20211/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2021-01/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2021.1: Happy New Year!
+</div>
+<div class="subtitle">
+<time datetime="2021-01-06T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2020 <a class="title-link" name="2020" href="#2020"></a>
+</h2>
+<a href="/blog/2020/12/13/release-202012/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-12/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+2020.12: Automate with Blueprints!
+</div>
+<div class="subtitle">
+<time datetime="2020-12-13T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/12/13/home-assistant-os-release-5/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-12-13-os5/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant OS Release 5
+</div>
+<div class="subtitle">
+<time datetime="2020-12-13T00:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/11/18/release-118/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-11-0.118/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.118: Grid and logbook cards, quick navigation, native template types
+</div>
+<div class="subtitle">
+<time datetime="2020-11-18T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/11/06/android-300-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-11-06-android-300-release/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Android App Release 3.0.0
+</div>
+<div class="subtitle">
+<time datetime="2020-11-06T00:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/10/28/release-117/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-10-0.117/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.117: Quick Bar, compact header, a YAML editor, XBox and Template types
+</div>
+<div class="subtitle">
+<time datetime="2020-10-28T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/10/21/supervisor-249/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-10-21-supervisor-249/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Supervisor 249: Resolution center, Stability &amp; Private container registries
+</div>
+<div class="subtitle">
+<time datetime="2020-10-21T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">21</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/10/07/release-116/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-10-0.116/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.116: Entities card row editor, restore snapshots and performance metrics
+</div>
+<div class="subtitle">
+<time datetime="2020-10-07T00:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/09/17/release-115/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-09-0.115/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.115: B-Day release! Media browser, tags, automations &amp; WTH
+</div>
+<div class="subtitle">
+<time datetime="2020-09-17T00:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/09/12/android-240-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-09-12-android-240-release/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Android App Release 2.4.0
+</div>
+<div class="subtitle">
+<time datetime="2020-09-12T00:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/08/28/android-230-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-08-28-android-230-release/Companion.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Android App: New Features
+</div>
+<div class="subtitle">
+<time datetime="2020-08-28T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/08/12/release-114/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-08-0.114/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.114: Dark mode, Open Z-Wave progress and more automation &amp; scripts
+</div>
+<div class="subtitle">
+<time datetime="2020-08-12T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/08/05/mobile-apps-new-features/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-08-05-mobile-apps-new-features/Companion-new-upcoming.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion Apps: New and Upcoming Features
+</div>
+<div class="subtitle">
+<time datetime="2020-08-05T00:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/07/22/release-113/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-07-0.113/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.113: Automations &amp; Scripts, and even more performance!
+</div>
+<div class="subtitle">
+<time datetime="2020-07-22T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/07/01/release-112/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-07-0.112/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.112: Making things faster; Logbook &amp; History
+</div>
+<div class="subtitle">
+<time datetime="2020-07-01T00:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/06/10/release-111/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-06-0.111/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.111: Frontend loaded sooner, Elexa Guardian, Unify Circuit, Acmeda
+</div>
+<div class="subtitle">
+<time datetime="2020-06-10T00:00:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/05/20/release-110/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-05-0.110/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.110: Speed! OpenZWave beta, HomeKit Cameras, ONVIF, Calendars
+</div>
+<div class="subtitle">
+<time datetime="2020-05-20T00:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/04/29/release-109/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-04-0.109/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.109: New integrations page and weather card, frontend lost weight.
+</div>
+<div class="subtitle">
+<time datetime="2020-04-29T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/04/08/release-108/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-04-0.108/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.108: Logos, Area Pages, Lovelace Entity Card, Lovelace Map History
+</div>
+<div class="subtitle">
+<time datetime="2020-04-08T00:00:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/03/18/release-107/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-03-0.107/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.107: Multiple Lovelace Dashboards, adds helpers, new media player card
+</div>
+<div class="subtitle">
+<time datetime="2020-03-18T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/03/02/release-106-3/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-03-0.106.3/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.106.3: Coronavirus integration (COVID-19), track the outbreak
+</div>
+<div class="subtitle">
+<time datetime="2020-03-02T00:00:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/02/26/release-106/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-02-0.106/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.106: Light brightness stepping, better Safe Mode and person dialog
+</div>
+<div class="subtitle">
+<time datetime="2020-02-26T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/02/11/android-16-17-release/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-02-android-16-17-release/garage.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion for Android 1.6 and 1.7
+</div>
+<div class="subtitle">
+<time datetime="2020-02-11T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/02/05/release-105/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-02-0.105/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.105: Safe mode, Headers &amp; Footers, New Zones Editor, Garmin, Sighthound
+</div>
+<div class="subtitle">
+<time datetime="2020-02-05T00:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/01/28/android-150-release/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant Companion for Android 1.5.0
+</div>
+<div class="subtitle">
+<time datetime="2020-01-28T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2020/01/15/release-104/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2020-01-0.104/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.104: Sentry, Signal Messenger, IntesisHome, Sure Petcare, KEF
+</div>
+<div class="subtitle">
+<time datetime="2020-01-15T00:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">15</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2019 <a class="title-link" name="2019" href="#2019"></a>
+</h2>
+<a href="/blog/2019/12/11/release-103/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-12-0.103/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.103: Happy Holidays, Service calls, StarLine, GeoNet NZ and Proxmox
+</div>
+<div class="subtitle">
+<time datetime="2019-12-11T17:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/11/20/release-102/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-11-0.102/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.102: Official Android App, Almond, Scene editor
+</div>
+<div class="subtitle">
+<time datetime="2019-11-20T00:41:02+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/10/30/release-101/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-10-0.101/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.101: Airly, Apprise, Sinch, Solar-Log, Microsoft Teams
+</div>
+<div class="subtitle">
+<time datetime="2019-10-30T20:41:02+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">30</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/10/10/release-100/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-09-0.100/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.100: Better Plex, Bye JSON, HERE Travel time.
+</div>
+<div class="subtitle">
+<time datetime="2019-10-10T01:05:02+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/09/18/release-99/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-09-0.99/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.99: Withings, Device Automations, launch Home Assistant Cast from Python.
+</div>
+<div class="subtitle">
+<time datetime="2019-09-18T01:11:03+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/08/28/release-98/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-08-0.98/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.98: Improved entity management, options and Home Assistant Alerts
+</div>
+<div class="subtitle">
+<time datetime="2019-08-28T01:11:03+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/08/07/release-97/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-08-0.97/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.97: Apache Kafka, Fortigate, Twente Milieu
+</div>
+<div class="subtitle">
+<time datetime="2019-08-07T01:11:03+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/07/17/release-96/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-07-release-96/demo-sidebar.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.96: Notion, updated sidebar, advanced mode
+</div>
+<div class="subtitle">
+<time datetime="2019-07-17T00:11:03+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/06/26/release-95/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-06-release-95/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.95: AdGuard, Life360, Plaato Airlock
+</div>
+<div class="subtitle">
+<time datetime="2019-06-26T04:11:03+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/06/05/release-94/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-06-release-94/google-ui.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.94: SmartHab, Watson TTS, Azure Event Hub
+</div>
+<div class="subtitle">
+<time datetime="2019-06-05T04:11:03+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/05/16/release-93/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-05-release-93/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.93: Essent, AmbiClimate, VS Code debugging
+</div>
+<div class="subtitle">
+<time datetime="2019-05-16T04:11:03+00:00" pubdate>
+<span class="month">May</span> <span class="day">16</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/04/24/release-92/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-04-release-92/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.92: HEOS, Somfy MyLink, Genius Hub
+</div>
+<div class="subtitle">
+<time datetime="2019-04-24T00:11:03+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">24</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/04/03/release-91/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-04-release-91/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.91: More streaming, better Zigbee, cameras with ESPHome
+</div>
+<div class="subtitle">
+<time datetime="2019-04-03T00:11:03+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/03/20/release-90/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-03-release-90/remote.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.90: Remote UI, Streams, User Groups
+</div>
+<div class="subtitle">
+<time datetime="2019-03-20T00:11:03+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/03/06/release-89/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-03-release-89/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.89: Nissan Leaf, PlayStation 4, Point alarm control, Owlet baby monitor
+</div>
+<div class="subtitle">
+<time datetime="2019-03-06T00:11:03+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/02/20/release-88/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-02-release-88/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.88: Persons, Command line auth and event subscriptions
+</div>
+<div class="subtitle">
+<time datetime="2019-02-20T00:11:03+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/02/06/release-87/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-02-release-87/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.87: SmartThings, Areas and Entity Registry UI.
+</div>
+<div class="subtitle">
+<time datetime="2019-02-06T00:01:03+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/01/23/release-86/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-01-release-86/zha.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.86: New Lovelace UI and Zigbee Management Panel!
+</div>
+<div class="subtitle">
+<time datetime="2019-01-23T00:01:03+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">23</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/01/23/lovelace-released/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-01-lovelace/demo.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Lovelace UI released!
+</div>
+<div class="subtitle">
+<time datetime="2019-01-23T00:01:02+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">23</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2019/01/09/release-85/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2019-01-release-85/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.85: ESPHome, Plum Lightpad, OpenSenseMap
+</div>
+<div class="subtitle">
+<time datetime="2019-01-09T00:01:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2018 <a class="title-link" name="2018" href="#2018"></a>
+</h2>
+<a href="/blog/2018/12/12/release-84/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-12-release-84/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.84: Cloud webhooks, Wunderlist and USGS Earth Quakes
+</div>
+<div class="subtitle">
+<time datetime="2018-12-12T00:01:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/11/29/release-83/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-11-release-83/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.83: Fibaro Home Center Hubs, locks via voice, Traccar
+</div>
+<div class="subtitle">
+<time datetime="2018-11-29T00:01:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/11/09/release-82/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-11-release-82/lovelace-edit.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.82: TensorFlow, Lovelace UI edit, Z-Wave Barrier Class
+</div>
+<div class="subtitle">
+<time datetime="2018-11-09T00:01:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/10/26/release-81/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-10-release-81/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.81: new Lovelace cards, LG soundbars, Dyson fans, Elk-M1
+</div>
+<div class="subtitle">
+<time datetime="2018-10-26T00:01:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/10/12/release-80/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-10-release-80/lovelace-glance-sensor.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.80: Lovelace updates, webhooks, TRÅDFRI switches
+</div>
+<div class="subtitle">
+<time datetime="2018-10-12T00:01:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/09/28/release-79/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-09-release-0.79/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.79: Device Registry, Logi Circle, Huawei LTE routers, GeoJSON
+</div>
+<div class="subtitle">
+<time datetime="2018-09-28T00:01:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/09/17/release-78/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-09-release-0.78/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.78: More auth, Switchmate, Yale Smart Alarm, OpenTherm
+</div>
+<div class="subtitle">
+<time datetime="2018-09-17T00:01:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/08/29/release-77/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-08-0.77/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.77: Authentication system 👮‍♂️ + Hangouts bot 🤖
+</div>
+<div class="subtitle">
+<time datetime="2018-08-29T00:01:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/08/17/release-76/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-08-0.76/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.76: Auth almost done, FleetGo, PJLink, RMV public transport
+</div>
+<div class="subtitle">
+<time datetime="2018-08-17T00:01:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/08/03/release-75/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-08-0.75/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.75: Spider, Tuya, Brunt, Magicseaweed API
+</div>
+<div class="subtitle">
+<time datetime="2018-08-03T00:01:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/07/20/release-74/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-07-0.74/paulus_guido.jpg)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.74: Tuya, Cloudflare DNS, Push Camera and Users UI
+</div>
+<div class="subtitle">
+<time datetime="2018-07-20T00:01:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/07/16/release-73-2/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.73.2 - Security Incident
+</div>
+<div class="subtitle">
+<time datetime="2018-07-16T00:01:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">16</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/07/06/release-73/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-07-0.73/lovelace-elements.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.73: Preview version new user system, Rachio cloud push and Lovelace goes wild
+</div>
+<div class="subtitle">
+<time datetime="2018-07-06T00:01:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/06/22/release-72/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-06-release-0.72/lovelace.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.72: Lovelace UI, KIWI Doorlocks, Wireless Tags, Insteon X10.
+</div>
+<div class="subtitle">
+<time datetime="2018-06-22T00:01:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/06/08/release-71/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-06-0.71/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.71: Lagute LW-12, Iperf3, Hydrawise, Ryobi Garage Doors
+</div>
+<div class="subtitle">
+<time datetime="2018-06-08T00:01:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/05/27/release-70/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.70: Facebox, SpaceAPI, Konnected Alarm System
+</div>
+<div class="subtitle">
+<time datetime="2018-05-27T00:01:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/05/11/release-69/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-05-0.69/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.69: Matrix Chatbot, PostNL, Social Blade, Xiaomi Mijia sensors
+</div>
+<div class="subtitle">
+<time datetime="2018-05-11T00:01:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/04/27/release-68/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-04-0.68/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.68: HomeKit control, Eufy, FritzBox, SigFox sensors
+</div>
+<div class="subtitle">
+<time datetime="2018-04-27T00:01:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/04/13/release-67/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-04-0.67/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.67: Mastodon, Tahoma switches, Nanoleaf Aurora Light Panels
+</div>
+<div class="subtitle">
+<time datetime="2018-04-13T00:01:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/03/30/release-66/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-03-0.66/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.66: VeSync switches, HomematicIP, and a group cover.
+</div>
+<div class="subtitle">
+<time datetime="2018-03-30T00:01:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">30</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/03/09/release-65/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-03-0.65/entity-registry-name.gif)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.65: Rename entities, new filter sensor, UpCloud and Channels
+</div>
+<div class="subtitle">
+<time datetime="2018-03-09T00:01:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/02/26/release-64/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-02-0.64/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.64: Over 1000 integrations! New: HomeKit, BMW, August.
+</div>
+<div class="subtitle">
+<time datetime="2018-02-26T00:01:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/02/10/release-63/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-02-0.63/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.63: Entity Registry, SQL Sensor, Mercedes cars
+</div>
+<div class="subtitle">
+<time datetime="2018-02-10T01:00:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/01/27/release-62/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-01-0.62/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.62: MyChevy, Iota and Venstar Thermostat
+</div>
+<div class="subtitle">
+<time datetime="2018-01-27T01:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2018/01/14/release-61/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2018-01-0.61/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.61: Coinbase, Discogs, iGlo, Sochain
+</div>
+<div class="subtitle">
+<time datetime="2018-01-14T18:00:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">14</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2017 <a class="title-link" name="2017" href="#2017"></a>
+</h2>
+<a href="/blog/2017/12/17/release-60/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-12-0.60/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.60: Beckhoff/TwinCAT, WebDav, Gearbest, iAlarm
+</div>
+<div class="subtitle">
+<time datetime="2017-12-17T02:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/12/03/release-59/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-12-0.59/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.59: Order pizza, Entity Picker, Color Wheel
+</div>
+<div class="subtitle">
+<time datetime="2017-12-03T02:00:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/11/18/release-58/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-11-0.58/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.58: More translations, faster frontend, system log
+</div>
+<div class="subtitle">
+<time datetime="2017-11-18T04:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/11/04/release-57/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-11-0.57/languages.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.57: Translations, Hacktoberfest, Timers
+</div>
+<div class="subtitle">
+<time datetime="2017-11-04T04:00:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/10/21/release-56/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-10-0.56/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.56: Skybell, Google Assistant, Travis CI and Toon
+</div>
+<div class="subtitle">
+<time datetime="2017-10-21T10:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">21</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/10/07/release-55/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-10-0.55/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.55: Tibber, DuckDNS, The Things Network, Owntrack
+</div>
+<div class="subtitle">
+<time datetime="2017-10-07T10:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/09/23/release-54/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-09-0.54/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.54: Todoist, DoorBird, Abode cameras
+</div>
+<div class="subtitle">
+<time datetime="2017-09-23T00:11:05+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">23</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/09/09/release-53/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-09-0.53/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.53: Tesla, Customize editor, and super fast KNX rewrite
+</div>
+<div class="subtitle">
+<time datetime="2017-09-09T00:11:05+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/08/26/release-0-52/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-08-0.52/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.52: Scripts editor, Nello.io locks, HipChat and Abode Home Security
+</div>
+<div class="subtitle">
+<time datetime="2017-08-26T00:11:05+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/08/12/release-51/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-08-0.51/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.51: Massive history speed up, finished automation editor and official vacuum cleaner support
+</div>
+<div class="subtitle">
+<time datetime="2017-08-12T00:11:05+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/07/29/release-50/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-07-0.50/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.50: Voice control, History improvements, and Xiaomi
+</div>
+<div class="subtitle">
+<time datetime="2017-07-29T00:11:05+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/07/15/release-49/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-07-0.49/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.49: Themes 🎨, kiosk mode and Prometheus.io
+</div>
+<div class="subtitle">
+<time datetime="2017-07-15T00:02:05+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">15</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/07/02/release-48/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-07-0.48/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.48: Snips.ai, Shiftr.io and a massive History query speed up
+</div>
+<div class="subtitle">
+<time datetime="2017-07-02T00:02:05+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">02</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/06/17/release-47/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-06-0.47/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.47: Python Scripts, Sesame Smart Lock, Gitter, Onvif cameras
+</div>
+<div class="subtitle">
+<time datetime="2017-06-17T01:04:05+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/06/04/release-46/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-06-0.46/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.46: Rachio sprinklers, Netgear Arlo cameras and Z-Wave fans
+</div>
+<div class="subtitle">
+<time datetime="2017-06-04T01:04:05+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/05/20/automation-editor-zwave-panel-ocr/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-05-0.45/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.45: Automation editor, Z-Wave panel, OCR
+</div>
+<div class="subtitle">
+<time datetime="2017-05-20T13:00:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/05/06/zigbee-opencv-dlib/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-05-0.44/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.44: Zigbee, OpenCV and DLib
+</div>
+<div class="subtitle">
+<time datetime="2017-05-06T01:04:05+00:00" pubdate>
+<span class="month">May</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/04/22/ikea-tradfri-spotify/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-04-0.43/components.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.43: IKEA Trådfri, Spotify and our iOS app is live
+</div>
+<div class="subtitle">
+<time datetime="2017-04-22T01:04:05+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/04/08/eddystone-beacons-lockitron-locks-total-connect/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-04-0.42/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.42: Eddystone Beacons, Lockitron locks and Total Connect alarm systems
+</div>
+<div class="subtitle">
+<time datetime="2017-04-08T08:04:05+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/03/25/todo-volumio-workday/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-03-0.41/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.41: Tado, Volumio, Workday, improved Plex
+</div>
+<div class="subtitle">
+<time datetime="2017-03-25T08:04:05+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">25</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/03/22/broken-dependencies/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.40.2 and broken dependencies
+</div>
+<div class="subtitle">
+<time datetime="2017-03-22T08:04:05+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/03/11/repurpose-any-android-phone-as-ip-camera/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-03-0.40/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant 0.40: Turn any Android phone into an IP Webcam
+</div>
+<div class="subtitle">
+<time datetime="2017-03-11T08:04:05+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/02/25/config-panel-and-state-restoration/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-02-0.39/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.39: Configuration panel, state restoration and improved docs
+</div>
+<div class="subtitle">
+<time datetime="2017-02-25T08:04:05+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">25</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/02/11/alert-appletv-mqtt-yeelight/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-02-0.38/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.38: Alert, AppleTV, MQTT discovery, and Yeelight
+</div>
+<div class="subtitle">
+<time datetime="2017-02-11T08:04:05+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/01/28/face-coffee-wink/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2017-01-0.37/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.37: Face detection, Coffee, Wink
+</div>
+<div class="subtitle">
+<time datetime="2017-01-28T08:04:05+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2017/01/14/iss-usps-images-packages/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-01-0.36/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.36: ISS, USPS, Image processing, Insteon
+</div>
+<div class="subtitle">
+<time datetime="2017-01-14T08:04:05+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">14</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2016 <a class="title-link" name="2016" href="#2016"></a>
+</h2>
+<a href="/blog/2016/12/17/text-to-speech-aquostv-flic-zamg/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-12-0.35/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.35: Text-to-speech, VLC, Flic, netdata
+</div>
+<div class="subtitle">
+<time datetime="2016-12-17T08:04:05+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/12/03/remote-websockets-sonarr/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-12-0.34/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.34: New Remote component, Websockets, Sonarr, GPSLogger
+</div>
+<div class="subtitle">
+<time datetime="2016-12-03T08:04:05+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">03</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/11/20/calendar-wink-thermostats-cisco-ios/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-11-0.33/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.33: New Calendar component, Wink thermostats and Cisco IOS
+</div>
+<div class="subtitle">
+<time datetime="2016-11-20T00:04:05+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/11/05/hacktoberfest-influxdb-weather/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.32: Hacktoberfest, InfluxDB sensor, Error reporting, and Weather
+</div>
+<div class="subtitle">
+<time datetime="2016-11-05T03:04:05+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/10/22/flash-briefing-updater-hacktoberfest/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.31: Reading you the news, some serious business, spooky hackery and a breaking Z-Wave change
+</div>
+<div class="subtitle">
+<time datetime="2016-10-22T20:00:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/10/08/hassbian-rest-digital-ocean/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.30: More Async, HASSbian, Digital Ocean, statistics, REST
+</div>
+<div class="subtitle">
+<time datetime="2016-10-08T03:04:05+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/09/29/async-sleepiq-emoncms-stocks/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.29: 🎈 Async, SleepIQ, OpenALPR, EmonCMS, stocks, and plants
+</div>
+<div class="subtitle">
+<time datetime="2016-09-29T03:04:05+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">29</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/09/10/notify-group-reload-api-pihole/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.28: Reload automation and groups, API documentation, car tracking, Pi-Hole stats
+</div>
+<div class="subtitle">
+<time datetime="2016-09-10T06:00:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/08/28/notifications-hue-fake-unification/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.27 is here to break eggs and take names: notifications, Hue fakery, safety and unification come to Home Assistant
+</div>
+<div class="subtitle">
+<time datetime="2016-08-28T20:30:25+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">28</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/08/13/foursquare-fast-com-ffmpeg-gpsd/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.26: Foursquare, Fast.com, FFMPEG and GPSD
+</div>
+<div class="subtitle">
+<time datetime="2016-08-13T19:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/07/30/custom-frontend-panels-jupyter-notebooks-directv/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.25: Custom frontend panels, Jupyter notebooks, DirecTV.
+</div>
+<div class="subtitle">
+<time datetime="2016-07-30T12:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">30</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/07/16/sqlalchemy-knx-join-simplisafe/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.24: SQLAlchemy, KNX, Join by Joaoapps, and SimpliSafe.
+</div>
+<div class="subtitle">
+<time datetime="2016-07-16T12:00:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">16</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/07/01/envisalink-homematic-hdmi-cec-and-sony-bravia-tv/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.23: Envisalink, Homematic, HDMI-CEC and Sony Bravia TV
+</div>
+<div class="subtitle">
+<time datetime="2016-07-01T00:31:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/06/18/pandora-bt-home-hub-5-and-local-file-camera/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.22: Pandora, BT Home Hub 5 and local file camera.
+</div>
+<div class="subtitle">
+<time datetime="2016-06-18T18:06:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">18</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/06/08/super-fast-web-enocean-lirc/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.21: Improved Web and support for EnOcean, LIRC and Osram Lightify
+</div>
+<div class="subtitle">
+<time datetime="2016-06-08T01:06:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/05/21/release-020/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.20: Roku, Last.fm, AWS, Twilio
+</div>
+<div class="subtitle">
+<time datetime="2016-05-21T18:06:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">21</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/05/07/empowering-scripts-and-alexa/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.19: Empowering scripts and Alexa
+</div>
+<div class="subtitle">
+<time datetime="2016-05-07T18:06:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">07</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/04/20/bluetooth-lg-webos-tvs-and-roombas/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-04-release-18/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.18: Bluetooth, LG WebOS TVs and Roombas.
+</div>
+<div class="subtitle">
+<time datetime="2016-04-20T23:10:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">20</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/04/09/onkyo-panasonic-gtfs-and-config-validation/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.17: Onkyo, Panasonic, GTFS and config validation
+</div>
+<div class="subtitle">
+<time datetime="2016-04-09T23:10:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/03/26/embedded-mqtt-broker-uber-yamaha-growl/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.16: Embedded MQTT broker, Uber, Yamaha receivers and Growl
+</div>
+<div class="subtitle">
+<time datetime="2016-03-26T07:10:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/03/12/z-wave-pep257-templated-service-calls/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.15: Unforked Open Z-Wave, templated service calls, extended scene support and PEP257 compliance.
+</div>
+<div class="subtitle">
+<time datetime="2016-03-12T18:55:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">12</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/02/27/steam-d-link-smart-plugs-and-neurio-energy-sensors/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-02-release-14/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.14: Steam, D-Link smart plugs and Neurio Energy Sensors
+</div>
+<div class="subtitle">
+<time datetime="2016-02-27T22:15:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">27</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/02/13/speedtest-bloomsky-splunk-and-garage-doors/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-02-release-13/social-img.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.13: Speedtest.net, Bloomsky, Splunk and Garage Doors
+</div>
+<div class="subtitle">
+<time datetime="2016-02-13T22:15:00+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/01/30/insteon-lifx-twitter-and-zigbee/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2016-01-release-12/social.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.12: Insteon, LIFX, Twitter and Zigbee
+</div>
+<div class="subtitle">
+<time datetime="2016-01-30T08:22:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">30</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2016/01/17/extended-support-for-diy-solutions/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.11: Extended support for DIY solutions
+</div>
+<div class="subtitle">
+<time datetime="2016-01-17T23:20:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<h2>2015 <a class="title-link" name="2015" href="#2015"></a>
+</h2>
+<a href="/blog/2015/12/22/amazon-echo-icloud-and-templates/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2015-12-release-10/alexa-fb.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.10: Amazon Echo, iCloud, Dweet.io, Twitch and templating support!
+</div>
+<div class="subtitle">
+<time datetime="2015-12-22T09:30:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/12/06/locks-rollershutters-binary-sensors-and-influxdb-support/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2015-12-release-09/facebook-09.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.9: Rollershutters, locks, binary sensors and InfluxDB
+</div>
+<div class="subtitle">
+<time datetime="2015-12-06T19:29:00+00:00" pubdate>
+<span class="month">Dec</span> <span class="day">06</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/11/16/zwave-switches-lights-and-honeywell-thermostats-now-supported/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.8: Honeywell Thermostats, Orvibo switches and Z-Wave switches and lights
+</div>
+<div class="subtitle">
+<time datetime="2015-11-16T21:27:00+00:00" pubdate>
+<span class="month">Nov</span> <span class="day">16</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/10/26/firetv-and-radiotherm-now-supported/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.7.6: Amazon FireTV, Radiotherm thermostats
+</div>
+<div class="subtitle">
+<time datetime="2015-10-26T18:10:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">26</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/10/11/rfxtrx-blinkstick-and-snmp-support/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.7.5: Blinkstick, SNMP, Telegram
+</div>
+<div class="subtitle">
+<time datetime="2015-10-11T17:10:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/10/05/home-assistant-goes-geo-with-owntracks/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/screenshots/map.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant goes geo with OwnTracks
+</div>
+<div class="subtitle">
+<time datetime="2015-10-05T21:49:00+00:00" pubdate>
+<span class="month">Oct</span> <span class="day">05</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/09/19/alarm-sonos-and-itunes-support/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Alarms, Sonos and iTunes now supported
+</div>
+<div class="subtitle">
+<time datetime="2015-09-19T21:47:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">19</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/09/13/home-assistant-meets-ifttt/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/blog/2015-09-ifttt/og_facebook.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant meets IFTTT
+</div>
+<div class="subtitle">
+<time datetime="2015-09-13T16:28:00+00:00" pubdate>
+<span class="month">Sep</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/08/31/version-7-revamped-ui-and-improved-distribution/">
+<div class="material-card">
+<div class="img" style="background-image: url(/images/screenshots/ui2015.png)"></div>
+<div class="caption">
+<div>
+<div class="title">
+0.7: Better UI and improved distribution
+</div>
+<div class="subtitle">
+<time datetime="2015-08-31T21:12:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">31</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/08/17/verisure-and-modern-tp-link-router-support/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Verisure devices and modern TP-Link routers now supported
+</div>
+<div class="subtitle">
+<time datetime="2015-08-17T20:00:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">17</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/08/09/mqtt-raspberry-pi-squeezebox-asuswrt-support/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+MQTT, Rasperry Pi, Logitech Squeezebox and ASUSWRT routers now supported
+</div>
+<div class="subtitle">
+<time datetime="2015-08-09T18:01:00+00:00" pubdate>
+<span class="month">Aug</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/07/11/ip-cameras-arduino-kodi-efergy-support/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+IP Cameras, Arduinos, Kodi and Efergy Energy Monitors now supported
+</div>
+<div class="subtitle">
+<time datetime="2015-07-11T08:37:00+00:00" pubdate>
+<span class="month">Jul</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/06/10/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for June 10, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-06-10T18:54:00+00:00" pubdate>
+<span class="month">Jun</span> <span class="day">10</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/05/14/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for May 14, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-05-14T22:25:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">14</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/05/09/utc-time-zone-awareness/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+UTC &amp; Time zone awareness
+</div>
+<div class="subtitle">
+<time datetime="2015-05-09T23:08:00+00:00" pubdate>
+<span class="month">May</span> <span class="day">09</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/04/25/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for April 25, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-04-25T13:57:00+00:00" pubdate>
+<span class="month">Apr</span> <span class="day">25</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/03/22/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for March 22, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-03-22T08:21:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">22</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/03/11/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for March 11, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-03-11T18:36:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/03/01/home-assistant-migrating-to-yaml/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Home Assistant moving to YAML
+</div>
+<div class="subtitle">
+<time datetime="2015-03-01T19:38:00+00:00" pubdate>
+<span class="month">Mar</span> <span class="day">01</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/02/24/streaming-updates/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Streaming updates
+</div>
+<div class="subtitle">
+<time datetime="2015-02-24T22:41:27+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">24</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/02/08/looking-at-the-past/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Looking at the past
+</div>
+<div class="subtitle">
+<time datetime="2015-02-08T17:01:23+00:00" pubdate>
+<span class="month">Feb</span> <span class="day">08</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/01/24/release-notes/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Release notes for January 24, 2015
+</div>
+<div class="subtitle">
+<time datetime="2015-01-24T18:36:00+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">24</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/01/13/nest-in-da-house/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Nest in the house!
+</div>
+<div class="subtitle">
+<time datetime="2015-01-13T16:29:04+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">13</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/01/11/bootstrapping-your-setup-with-discovery/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Bootstrapping your setup with Discovery
+</div>
+<div class="subtitle">
+<time datetime="2015-01-11T21:49:08+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">11</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+<a href="/blog/2015/01/04/hey-pushbullet-nice-talking-to-you/">
+<div class="material-card">
+<div class="img" style="background-image: url()"></div>
+<div class="caption">
+<div>
+<div class="title">
+Hello PushBullet, nice talking to you
+</div>
+<div class="subtitle">
+<time datetime="2015-01-04T21:29:07+00:00" pubdate>
+<span class="month">Jan</span> <span class="day">04</span>
+</time>
+</div>
+</div>
+<svg viewbox="0 0 24 24">
+<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+</svg>
+</div>
+</div>
+</a>
+</div>
+</article>
+</div>
+<aside id="sidebar" class="grid__item one-third desk-wide-one-quarter lap-one-whole palm-one-whole">
+<div class="grid">
+<section class="categories aside-module grid__item one-whole lap-one-half">
+<h1 class="title epsilon"><iconify-icon inline icon="mdi:category"></iconify-icon> Categories</h1>
+<ul class="divided">
+<li><a href="/blog/categories/announcements/">Announcements <span class="count">79</span></a></li>
+<li><a href="/blog/categories/assist/">Assist <span class="count">12</span></a></li>
+<li><a href="/blog/categories/cloud/">Cloud <span class="count">1</span></a></li>
+<li><a href="/blog/categories/community/">Community <span class="count">49</span></a></li>
+<li><a href="/blog/categories/dashboard/">Dashboard <span class="count">4</span></a></li>
+<li><a href="/blog/categories/device-tracking/">Device Tracking <span class="count">1</span></a></li>
+<li><a href="/blog/categories/esp8266/">ESP8266 <span class="count">4</span></a></li>
+<li><a href="/blog/categories/haos/">HAOS <span class="count">1</span></a></li>
+<li><a href="/blog/categories/how-to/">How To <span class="count">31</span></a></li>
+<li><a href="/blog/categories/internet-of-things/">Internet of Things <span class="count">5</span></a></li>
+<li><a href="/blog/categories/iot-data/">IoT Data <span class="count">3</span></a></li>
+<li><a href="/blog/categories/mqtt/">MQTT <span class="count">4</span></a></li>
+<li><a href="/blog/categories/matter/">Matter <span class="count">3</span></a></li>
+<li><a href="/blog/categories/media/">Media <span class="count">10</span></a></li>
+<li><a href="/blog/categories/merchandise/">Merchandise <span class="count">1</span></a></li>
+<li><a href="/blog/categories/micropython/">Micropython <span class="count">3</span></a></li>
+<li><a href="/blog/categories/music-assistant/">Music Assistant <span class="count">1</span></a></li>
+<li><a href="/blog/categories/organization/">Organization <span class="count">6</span></a></li>
+<li><a href="/blog/categories/owntracks/">OwnTracks <span class="count">2</span></a></li>
+<li><a href="/blog/categories/presence-detection/">Presence Detection <span class="count">1</span></a></li>
+<li><a href="/blog/categories/public-service-announcement/">Public Service Announcement <span class="count">19</span></a></li>
+<li><a href="/blog/categories/release-notes/">Release Notes <span class="count">205</span></a></li>
+<li><a href="/blog/categories/roadmap/">Roadmap <span class="count">2</span></a></li>
+<li><a href="/blog/categories/supervisor/">Supervisor <span class="count">1</span></a></li>
+<li><a href="/blog/categories/survey/">Survey <span class="count">1</span></a></li>
+<li><a href="/blog/categories/talks/">Talks <span class="count">1</span></a></li>
+<li><a href="/blog/categories/technology/">Technology <span class="count">11</span></a></li>
+<li><a href="/blog/categories/user-stories/">User Stories <span class="count">2</span></a></li>
+<li><a href="/blog/categories/video/">Video <span class="count">11</span></a></li>
+<li><a href="/blog/categories/website/">Website <span class="count">2</span></a></li>
+<li><a href="/blog/categories/z-wave/">Z Wave <span class="count">2</span></a></li>
+<li><a href="/blog/categories/ibeacons/">iBeacons <span class="count">2</span></a></li>
+<li><a href="/blog/categories/ios/">iOS <span class="count">4</span></a></li>
+</ul>
+</section>
+</div>
+</aside>
+</div>
+</div>
+<footer>
+<div class="grid-wrapper">
+<div class="grid">
+<div class="grid__item">
+<div class="skyline grid">
+<div class="skyline grid__item one-whole">
+<div class="footer-skyline">
+</div>
+</div>
+</div>
+<div class="footer-nav grid">
+<div class="company grid__item one-quarter lap-one-half palm-one-whole">
+<div class="title">
+<img src="/images/footer-logo-text.svg" height="72" alt="Home Assistant" />
+</div>
+<p>
+Home Assistant is a project from the <a href="https://www.openhomefoundation.org/">Open Home Foundation</a>, sponsored by <a href="https://www.nabucasa.com/">Nabu Casa</a>.
+</p>
+</div>
+<div class="grid__item one-quarter lap-one-half palm-one-whole">
+<h4>Join us and contribute!</h4>
+<ul>
+<li><a class="external-link" href="https://github.com/home-assistant/">GitHub repo <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></li>
+<li><a class="external-link" href="https://developers.home-assistant.io">Developers Portal <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></li>
+<li><a class="external-link" href="https://design.home-assistant.io">Design Portal <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></li>
+<li><a class="external-link" href="https://data.home-assistant.io">Data Science Portal <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></li>
+<li><a class="external-link" href="https://community.home-assistant.io">Community Forum <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></li>
+<li><a href="/help/reporting_issues/">Reporting issues</a></li>
+<li><a href="https://home-assistant-store.creator-spring.com/">Community Merch Store</a></li>
+</ul>
+<h4>System status</h4>
+<ul>
+<li>
+<a class="external-link" href="https://alerts.home-assistant.io">Integration Alerts <iconify-icon inline icon="tabler:external-link"></iconify-icon></a>
+</li>
+<li><a href="/security/">Security Alerts</a></li>
+<li>
+<a class="external-link" href="https://status.home-assistant.io">System Status <iconify-icon inline icon="tabler:external-link"></iconify-icon></a>
+</li>
+</ul>
+</div>
+<div class="grid__item one-quarter lap-one-half palm-one-whole">
+<h4>Companion apps</h4>
+<ul>
+<li><a class="external-link" href="https://apps.apple.com/us/app/home-assistant/id1099568401">iOS and Apple devices</a></li>
+<li><a class="external-link" href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android">Android and Wear OS</a></li>
+<li><a class="external-link" href="https://companion.home-assistant.io/">...and more!</a></li>
+</ul>
+<h4>Governance</h4>
+<ul>
+<li><a href="/privacy/">Privacy Notices</a></li>
+<li><a href="/developers/cla/">Contributor License Agreement</a></li>
+<li><a href="/tos/">Terms of Service</a></li>
+<li><a href="/code_of_conduct/">Code of Conduct</a></li>
+<li><a href="/developers/credits/">Credits</a></li>
+<li><a href="/developers/license/">License</a></li>
+</ul>
+</div>
+<div class="socials grid__item one-quarter lap-one-half palm-one-whole">
+<h4>Follow us</h4>
+<p><a class="external-link" href="https://building.open-home.io/#/portal">Sign up for our newsletter <iconify-icon inline icon="tabler:external-link"></iconify-icon></a></p>
+<div class="icons">
+<a rel="me" href="https://youtube.com/@home_assistant" title="YouTube" target="_blank"><iconify-icon icon="simple-icons:youtube"></iconify-icon></a>
+<a rel="me" href="https://reddit.com/r/homeassistant" title="Reddit" target="_blank"><iconify-icon icon="simple-icons:reddit"></iconify-icon></a>
+<a rel="me" href="https://github.com/home-assistant/home-assistant" title="GitHub" target="_blank"><iconify-icon icon="simple-icons:github"></iconify-icon></a>
+<a rel="me" href="https://fosstodon.org/@homeassistant" title="Mastodon" target="_blank"><iconify-icon icon="simple-icons:mastodon"></iconify-icon></a>
+<br/>
+<a rel="me" href="https://x.com/home_assistant" title="X" target="_blank"><iconify-icon icon="simple-icons:x"></iconify-icon></a>
+<a rel="me" href="https://www.facebook.com/homeassistantio" title="Facebook" target="_blank"><iconify-icon icon="simple-icons:facebook"></iconify-icon></a>
+<a rel="me" href="https://www.instagram.com/homeassistant/" title="Instagram" target="_blank"><iconify-icon icon="simple-icons:instagram"></iconify-icon></a>
+<a rel="me" href="https://www.linkedin.com/company/home-assistant" title="LinkedIn" target="_blank"><iconify-icon icon="simple-icons:linkedin"></iconify-icon></a>
+</div>
+<div class="web-notice">
+<p>
+Contact us <a href="/cdn-cgi/l/email-protection#d4bcb1b8b8bb94bcbbb9b1f9b5a7a7bda7a0b5baa0fabdbb">here</a> for media and partnership inquiries. (No technical support!)
+</p>
+<p>
+Website powered by <a href="https://jekyllrb.com/">Jekyll</a><br/>
+Originally based on the <a href="https://github.com/coogie/oscailte">Oscailte theme</a>
+</p>
+<a href="https://www.netlify.com">
+<img src="/images/frontpage/netlify.svg" alt="Deploys by Netlify Badge" />
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.3.1/lite-youtube.js"></script>
+<script src="/javascripts/terminology_tooltip.js?274cec0734bc752f0e5ea3d4e2e59858" type="text/javascript" defer></script>
+<script src="/javascripts/prism.js?5d6619066a1fc5cd819a93c132b539ac" type="text/javascript" defer></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@3/dist/umd/index.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  container: '#docsearch',
+  appId: 'FBHBYS3J0U',
+  indexName: 'home-assistant',
+  apiKey: "ba6f7e6d97b3d3d2f778978c742a47c6",
+});
+document.querySelector('.site-title').addEventListener('contextmenu', function(ev) {
+  ev.preventDefault();
+  document.location.assign("https://design.home-assistant.io/#brand/logo")
+});
+</script>
+</body>
+</html>

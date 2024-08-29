@@ -21,3 +21,8 @@ ignore = [
 	"TRY400", # https://docs.astral.sh/ruff/rules/error-instead-of-exception
 	"TRY401", # https://docs.astral.sh/ruff/rules/verbose-log-message
 ]
+
+[lint.per-file-ignores]
+"test/*.py" = [
+	"S101", # https://docs.astral.sh/ruff/rules/assert
+]
