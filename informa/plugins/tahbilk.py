@@ -18,6 +18,11 @@ TEMPLATE_NAME = 'tahbilk.tmpl'
 class State(StateBase):
     products_seen: set[str] = field(default_factory=set)
 
+@dataclass
+class NewRelease:
+    title: str
+    price: str
+
 
 @app.task('every 12 hours', name=__name__)
 def run():
@@ -25,16 +30,18 @@ def run():
 
 
 def main(state: State) -> int:
-    query_cellar_releases(state.products_seen)
+    if nr := query_cellar_releases(state.products_seen):
+        notify(nr)
+
     return len(state.products_seen)
 
 
-def query_cellar_releases(products_seen: set[str]):
+def query_cellar_releases(products_seen: set[str]) -> NewRelease | None:
     try:
         resp = requests.get('https://www.tahbilk.com.au/cellar-release', timeout=5)
     except requests.RequestException as e:
         logger.error('Failed loading Tahbilk website: %s', e)
-        return False
+        return None
 
     soup = bs4.BeautifulSoup(resp.text, 'html.parser')
 
@@ -42,23 +49,28 @@ def query_cellar_releases(products_seen: set[str]):
     for product_info in soup.select('div.product-info'):
         title = product_info.select('h4')[0].text
 
+        # Track all seen products, so they're notified only once
+        products_seen.add(title)
+
         # Alert on anything not already seen
         if title not in products_seen:
             price = product_info.select('.old-price')[0].text
             logger.info('Found %s at %s', title, price)
+            return NewRelease(title, price)
 
-            mailgun.send(
-                logger,
-                f'New Tahbilk release: {title}',
-                TEMPLATE_NAME,
-                {
-                    'title': title,
-                    'price': price,
-                },
-            )
+    return None
 
-        # Track all seen products, so they're notified only once
-        products_seen.add(title)
+
+def notify(nr: NewRelease):
+    mailgun.send(
+        logger,
+        f'New Tahbilk release: {nr.title}',
+        TEMPLATE_NAME,
+        {
+            'title': nr.title,
+            'price': nr.price,
+        },
+    )
 
 
 @click.group(name=__name__[16:])
